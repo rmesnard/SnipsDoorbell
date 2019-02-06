@@ -1,58 +1,81 @@
-# Raspberry Pi Intercom
+# SNIPS Doorbell
 
-Raspberry Pi Intercom brings back the old-fashioned intercom radio!
-Just press the big, friendly button to open a connection to other intercoms
-connected to the intercom network! Fancy!
+Doorbell that integrate a SNIPS voice assistant to say welcome and record messages from visitor when you are not at home.
 
-# Required Hardware
+# HacksterIo
 
-You need the following items to get started with this project.
-Ideally, you should build at least two intercom units!
+This project is available at [HacksterIO] (https://www.hackster.io/remy-mesnard/doorbell-intercom-with-snips-voice-assistant-68e77a)
 
-- A RaspberryPi (The original intercom uses a RPi3)
-- (A WS2812 RGB LED ring (12 leds) for amazing light effects)
-- A '3D SOUND' USB sound card
-- An external mic with a 3.5 mm plug
-- An external speaker with a 3.5 mm plug
-- A big, friendly push button
+#The Idea
+Building a Doorbell including a voice assisstant to reply to visitor. The doorbell is able to speak with visitor ( using TTS ) and run voice command.
+Connected to Home Automation system , the doorbell know if you are at home or not. Base on this information , the doorbell can :
 
-# Software Installation and configuration
-The installation procedure assumes a Raspbian Wheezy or similar OS.
-Everything is done via command line.
+    Say a welcome message with TTS. 
+    Ring inside the house and wait that somebody reply to visitor thru the Intercom functionality.
+    Ask the visitor if he want to record a message for you or try to join you by phone.
+    Try to identify the visitor by keywords "postal service" , "UPS" .
 
-## Install dependencies
-- install dependencies `sudo apt-get install git python3-dev python3-pip libsound2-dev libopus-dev`
 
-## Install a mumble server
+SnipsDrawing.jpg
 
-Documentation can be found [here](https://pimylifeup.com/raspberry-pi-mumble-server/).
+#Software
+The voice assistant use the SNIPS platform. You can design your own voice interactions by creating an assistant on their website, then upload this assisstant to your hardware. SNIPS work offline on your local network. No cloud. connection.
+The intercom functionality is managed by MUMBLE platform. Mumble is an open source voice chat system that run on many OS. 
+Communication between systems use the MQTT protocol. This protocol can be use also to interact with Home Automation software HomeAssistant 
 
-- `sudo apt-get install mumble-server`
-- `sudo dpkg-reconfigure mumble-server`
-- Modify settings `sudo vi /etc/mumble-server.ini`
-- Restart the server `sudo /etc/init.d/mumble-server restart`
+#Hardware
+We need 2 units to start.  1 Satellite inside the doorbell and 1 Base Server in the house.
+Both are based on Raspberry Pi platform. 
 
-Mumble server should now start automatically upon restart
+    The Satellite , you can use the Snips Voice Interaction Base Kit  or build your own satellite by assembling together : RaspberryPi Zero + ReSpeaker 2 Mics Pi Hat You need to connect a pushbuton to the GPIO of the RPI.
+    The Base server, require only one RaspberryPi 3B to run the basic voice assistant doorbell.
 
-## Python and friends
+For the Intercom capabilities, you can add :
 
-- Install virtualenv in your project folder `sudo pip3 install virtualenv`
-- Create a new virtualenv `virtualenv -p /usr/bin/python3 venv`
-- Activate it `source venv/bin/activate`
+    a ReSpeaker 2 Mics Pi Hat to your Base server and a push button connected to GPIO.
+    or a second satelite inside house. This satelite can be use also for home automation interface.
+    or use an Android / Windows / Linux tablet  
+    or use your smartphone 
 
-- clone this git repo `git clone https://github.com/pkronstrom/intercom`
-- update submodules `git submodule update --recursive`
-- `pip install -r requirements.txt`
-- `python pymumble/setup.py install`
+#Step 0 - MQTT (optional)
+MQTT protocol is used by SNIPS and HomeAssistant. Both provide their own Broker. But you can also use a separate broker like mosquito. Here's the way to setup your own MQTT Broker
+...
+#Step 1 - SNIPS Base server
+To build the Base , you need a raspberry Pi 3 or equivalent running with armbian distribution. I use the xxxx image. After a classic installation ( setup network, enable SSH .. ) proceed to SNIPS installation :
+...
+If you use the embedded MQTT broker of HomeAssistant :
+If you use the embedded MQTT broker of SNIPS:
+#Step 2 - Mumble 
+A mumble server (murmur) is used to manage the voice communication between visitor and users. Mumble is a multi platform open source software. Here we use mumur on RaspBerry pi , but you can install your Mumble server on other device / OS following the guide in the wiki. 
+...
+#Step 3 - Home Assistant 
+Home Assistant is used as home automation system in this project. But you can replace it by other system that support MQTT protocol.
+...
+If you use the embedded MQTT broker of HomeAssistant :
+If you use the embedded MQTT broker of SNIPS:
+#Step 4 - SNIPS Doorbell Satellite 
+This part need more than software parts. Here we must build the doorbell itself with Audio functionality and a push button.
+Using Seed Studio Snips Voice Interaction Kit  :
 
-# Hardware Installation and configuration
-- Plug the USB sound card in and attach your mic and speaker to it.
-- Add a push button between 3V3 and GPIO4 pins.
+    Follow the kit assembling guide
+    Replace the temperature sensor by a push button.
 
-# Getting it running!
-RPi.GPIO requires admin rights, so we need to run the intercom server as root.
-Make a copy of the settings file `cp intercom.ini.example intercom.ini` and modify it before running the server.
-The server can be started by calling `sudo python3 intercom.py`.
+Using Raspberry Pi 3 or Zero with Respeaker 2Mic  :
+
+    Setup your raspberry pi with Respeaker 2Mic pi Hat
+    Plug an external speaker
+    Connect a Push Button to the Respeaker 2Mic pi Hat
+
+-- freezing diagram --
+Using Raspberry Pi 3 or Zero with USB Sound Card
+Install SNIPS Satellite software.
+Install python Mumble client
+Setup Audio
+...
+#Step 5 - SNIPS at Home Satellite  (optional)
+...
+#Step 6 - SmartPhone configuration  (optional)
+...
 
 # Links
 - [pymumble](https://github.com/azlux/pymumble)
