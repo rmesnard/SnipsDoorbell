@@ -19,6 +19,9 @@ if [ ! -d "/usr/share/snips/config" ]; then
 fi
 chmod -R 777 /usr/share/snips/config
 
+rm -f /etc/asound.conf
+cp -f /usr/share/snips/config/asound.conf /etc/asound.conf
+
 echo "Install extra."
 if [ ! -d "/usr/share/snips/extra" ]; then
   mkdir /usr/share/snips/extra
