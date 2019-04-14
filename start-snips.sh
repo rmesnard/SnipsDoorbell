@@ -42,20 +42,26 @@ echo "Deploy assistant."
 snips-template render
 
 #goto skill directory
-cd /var/lib/snips/skills
+if [ -d "/usr/share/snips/mbrola" ]; then
+	cd /var/lib/snips/skills
+fi
 
 #start with a clear skill directory
 rm -rf *
 
-if [ -e /usr/share/snips/assistant ]; then
-	rm -f /etc/snips.toml
-	cp -f /usr/share/snips/config/snips.toml /etc/snips.toml
+if [ -e /usr/share/snips/skills ]; then
+	cp -R -f /usr/share/snips/skills /var/lib/snips/skills
 fi
+chmod -R 777 /var/lib/snips/skills
+
 
 #download required skills from git
-for url in $(awk '$1=="url:" {print $2}' /usr/share/snips/assistant/Snipsfile.yaml); do
-	git clone $url
-done
+#for url in $(awk '$1=="url:" {print $2}' /usr/share/snips/assistant/Snipsfile.yaml); do
+#	git clone $url
+#done
+
+#copy skills from shared
+
 
 #be sure we are still in the skill directory
 cd /var/lib/snips/skills
