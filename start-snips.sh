@@ -17,21 +17,21 @@ if [ ! -d "/usr/share/snips/config" ]; then
   mkdir /usr/share/snips/config
   cp -R -f /config /usr/share/snips
 fi
-chmod 777 /usr/share/snips/config
+chmod -R 777 /usr/share/snips/config
 
 echo "Install extra."
 if [ ! -d "/usr/share/snips/extra" ]; then
   mkdir /usr/share/snips/extra
   cp -R -f /extra /usr/share/snips
 fi
-chmod 777 /usr/share/snips/extra
+chmod -R 777 /usr/share/snips/extra
 
 echo "Install assistant."
 if [ ! -d "/usr/share/snips/assistant" ]; then
   mkdir /usr/share/snips/assistant
   cp -R -f /assistant /usr/share/snips
 fi
-chmod 777 /usr/share/snips/assistant
+chmod -R 777 /usr/share/snips/assistant
 
 echo "Deploy assistant."
 
