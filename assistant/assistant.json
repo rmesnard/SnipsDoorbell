@@ -1,0 +1,115 @@
+{
+  "id" : "proj_E6gNnyWBnM9",
+  "name" : "doorbell",
+  "intents" : [ {
+    "id" : "rmesnard:servicename",
+    "type" : "registry",
+    "version" : "0.2.0",
+    "language" : "fr",
+    "slots" : [ {
+      "name" : "service",
+      "id" : "x0k7RXK3a",
+      "entityId" : "entity_PAeayemv4Yy",
+      "missingQuestion" : "",
+      "required" : false
+    } ],
+    "name" : "servicename",
+    "enabledByDefault" : true
+  }, {
+    "id" : "rmesnard:getmessage",
+    "type" : "registry",
+    "version" : "0.1.0",
+    "language" : "fr",
+    "slots" : [ {
+      "name" : "answer",
+      "id" : "BDP35QBAp",
+      "entityId" : "snips/default",
+      "missingQuestion" : "",
+      "required" : false
+    } ],
+    "name" : "getmessage",
+    "enabledByDefault" : true
+  }, {
+    "id" : "checkHumidity",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ {
+      "name" : "house_room",
+      "id" : "slot_imported_mxcjzyGCo",
+      "entityId" : "entity_zq37QYxoxOr",
+      "missingQuestion" : "",
+      "required" : false
+    } ],
+    "name" : "checkHumidity",
+    "enabledByDefault" : true
+  }, {
+    "id" : "relayTurnOff",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ {
+      "name" : "device",
+      "id" : "slot_imported_TQ4RWNFQR",
+      "entityId" : "entity_zmn9YQ7vZpx",
+      "missingQuestion" : "",
+      "required" : false
+    }, {
+      "name" : "house_room",
+      "id" : "slot_imported_XPbkPf0rWY",
+      "entityId" : "entity_zq37QYxoxOr",
+      "missingQuestion" : "",
+      "required" : false
+    } ],
+    "name" : "relayTurnOff",
+    "enabledByDefault" : true
+  }, {
+    "id" : "relayTurnOn",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ {
+      "name" : "device",
+      "id" : "slot_imported_ZdbkihOlL",
+      "entityId" : "entity_zmn9YQ7vZpx",
+      "missingQuestion" : "",
+      "required" : false
+    }, {
+      "name" : "house_room",
+      "id" : "slot_imported_unx1YFld4E",
+      "entityId" : "entity_zq37QYxoxOr",
+      "missingQuestion" : "",
+      "required" : false
+    } ],
+    "name" : "relayTurnOn",
+    "enabledByDefault" : true
+  }, {
+    "id" : "checkTemperature",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ {
+      "name" : "house_room",
+      "id" : "slot_imported_lLi-uMMRW",
+      "entityId" : "entity_zq37QYxoxOr",
+      "missingQuestion" : "",
+      "required" : false
+    } ],
+    "name" : "checkTemperature",
+    "enabledByDefault" : true
+  } ],
+  "createdAt" : "2019-01-25T18:03:51.520Z",
+  "language" : "fr",
+  "version" : {
+    "nluModel" : "0.19.0"
+  },
+  "platform" : {
+    "type" : "raspberrypi"
+  },
+  "asr" : {
+    "type" : "snips"
+  },
+  "analyticsEnabled" : true,
+  "heartbeatEnabled" : true,
+  "hotword" : "hey_snips"
+}

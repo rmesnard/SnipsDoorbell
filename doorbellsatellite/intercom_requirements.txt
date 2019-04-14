@@ -1,5 +1,0 @@
-configparser
-pyalsaaudio
-rpio
-pymumble
-RPi.GPIO
