@@ -46,15 +46,18 @@ snips-template render
 
 #goto skill directory
 
+
 if [ -d "/usr/share/snips/skills" ]; then
+	echo "use shared skills."
 	cp -R -f /usr/share/snips/skills /var/lib/snips
 	chmod -R 777 /var/lib/snips/skills
 fi
 
 
 if [ ! -d "/usr/share/snips/skills" ]; then
-  mkdir /usr/share/snips/skills
-  cp -R -f /var/lib/snips/skills /usr/share/snips
+	echo "share skills."
+	mkdir /usr/share/snips/skills
+	cp -R -f /var/lib/snips/skills /usr/share/snips
 fi
 chmod -R 777 /usr/share/snips/skills
 
