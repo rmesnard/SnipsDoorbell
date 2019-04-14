@@ -4,16 +4,12 @@ set -e
 #verify that environment variables have been passed to this container. set the default value if not.
 ENABLE_MQTT=${ENABLE_MQTT:-yes}
 ENABLE_HOTWORD_SERVICE=${ENABLE_HOTWORD_SERVICE:-yes}
-ENABLE_MBROLA=${ENABLE_MBROLA:-no}
 
-if [ $ENABLE_MBROLA == yes ]; then
-echo "Install mbrola."
-	cp mbrola /usr/bin/mbrola
-	cd /usr/share
-	if [ -d "/usr/share/snips/voices" ]; then
-	  cp -f snips/voices/* mbrola
-	fi
-	cd /
+
+if [ ! -d "/usr/share/snips/voices" ]; then
+	echo "Install mbrola voices:"
+	ls /usr/share/snips/voices
+	cp -f /usr/share/snips/voices/* /usr/lib/arm-linux-gnueabihf/espeak-data/voices/mb
 fi
 
 echo "Install config."
