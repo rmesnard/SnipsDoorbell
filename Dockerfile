@@ -30,7 +30,7 @@ COPY ./config/ /config/
 COPY ./extra/ /extra/ 
 COPY ./assistant/ /assistant/ 
 COPY ./skills/ /var/lib/snips/skills/ 
-COPY mbrola /usr/bin/mbrola && chmod 777 /usr/bin/mbrola
+COPY mbrola mbrola
 
 #RUN modinfo snd-aloop
 #RUN modprobe snd-aloop	

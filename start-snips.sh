@@ -10,6 +10,9 @@ if [ -d "/usr/share/snips/mbrola" ]; then
 	echo "Install mbrola voices:"
 	ls /usr/share/snips/mbrola
 	cp -r /usr/share/snips/mbrola /usr/share/mbrola
+	
+	cp -f mbrola /usr/bin/mbrola 
+	chmod 777 /usr/bin/mbrola
 fi
 
 echo "Install config."
