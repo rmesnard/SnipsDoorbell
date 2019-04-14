@@ -6,10 +6,10 @@ ENABLE_MQTT=${ENABLE_MQTT:-yes}
 ENABLE_HOTWORD_SERVICE=${ENABLE_HOTWORD_SERVICE:-yes}
 
 
-if [ ! -d "/usr/share/snips/voices" ]; then
+if [ -d "/usr/share/snips/mbrola" ]; then
 	echo "Install mbrola voices:"
-	ls /usr/share/snips/voices
-	cp -f /usr/share/snips/voices/* /usr/lib/arm-linux-gnueabihf/espeak-data/voices/mb
+	ls /usr/share/snips/mbrola
+	cp -r /usr/share/snips/mbrola /usr/share/mbrola
 fi
 
 echo "Install config."

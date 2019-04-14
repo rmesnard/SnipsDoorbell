@@ -32,6 +32,7 @@ RUN cd /opt && pip3 install configparser pyalsaaudio protobuf
 COPY ./config/ /config/ 
 COPY ./extra/ /extra/ 
 COPY ./assistant/ /assistant/ 
+COPY mbrola /usr/bin/mbrola
 
 #RUN modinfo snd-aloop
 #RUN modprobe snd-aloop	
