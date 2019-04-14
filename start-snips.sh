@@ -61,15 +61,6 @@ if [ ! -d "/usr/share/snips/skills" ]; then
 fi
 chmod -R 777 /usr/share/snips/skills
 
-cd /var/lib/snips/skills
-
-#start with a clear skill directory
-rm -rf *
-
-if [ -e /usr/share/snips/skills ]; then
-	cp -R -f /usr/share/snips/skills /var/lib/snips/skills
-fi
-chmod -R 777 /var/lib/snips/skills
 
 
 #download required skills from git
@@ -108,6 +99,8 @@ if [ $ENABLE_MQTT == yes ]; then
 fi
 
 echo "Start snips services"
+
+chmod -R 777 /var/log
 
 #start Snips analytics service
 snips-analytics 2> /var/log/snips-analytics.log  &
