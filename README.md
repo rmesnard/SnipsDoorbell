@@ -5,7 +5,7 @@ Project Here  :
 https://www.hackster.io/remy-mesnard/doorbell-intercom-with-snips-voice-assistant-68e77a
 
 
-##build
+#build
 
 install git : 
 
@@ -16,14 +16,14 @@ Build with docker :
 sudo docker build -t rmesnard/snipsdoorbell github.com/rmesnard/SnipsDoorbell
 
 
-##install
+#install
 
 create volume :
 
 sudo docker volume create snips_config
 sudo docker volume create snips_log
 
-##run 
+#run 
 
 sudo docker run -d --name snips-doorbell \
 	-v snips_log:/var/log \
@@ -34,7 +34,7 @@ sudo docker run -d --name snips-doorbell \
 	-p 1883:1883 \
 	rmesnard/snipsdoorbell
 
-##share config 
+#share config 
 
 docker run -d -p <IP HERE>:445:445 \
   -v  snips_config:/share/data \
