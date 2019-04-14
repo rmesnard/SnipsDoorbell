@@ -42,9 +42,20 @@ echo "Deploy assistant."
 snips-template render
 
 #goto skill directory
-if [ -d "/usr/share/snips/mbrola" ]; then
-	cd /var/lib/snips/skills
+
+if [ -d "/usr/share/snips/skills" ]; then
+	cp -R -f /usr/share/snips/skills /var/lib/snips
+	chmod -R 777 /var/lib/snips/skills
 fi
+
+
+if [ ! -d "/usr/share/snips/skills" ]; then
+  mkdir /usr/share/snips/skills
+  cp -R -f /var/lib/snips/skills /usr/share/snips
+fi
+chmod -R 777 /usr/share/snips/skills
+
+cd /var/lib/snips/skills
 
 #start with a clear skill directory
 rm -rf *

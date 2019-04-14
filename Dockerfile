@@ -25,17 +25,19 @@ RUN set -x && \
 RUN set -x && \
 	apt-get install -y snips-makers-tts alsa-utils snips-platform-voice snips-skill-server mosquitto snips-analytics snips-asr snips-audio-server snips-dialogue snips-hotword snips-nlu curl unzip snips-template python3-pip python3-setuptools python3-wheel libasound2-dev libasound2 libasound2-data git espeak
 	
-#python libraries
-
-RUN cd /opt && pip3 install configparser pyalsaaudio protobuf
 
 COPY ./config/ /config/ 
 COPY ./extra/ /extra/ 
 COPY ./assistant/ /assistant/ 
-COPY mbrola /usr/bin/mbrola
+COPY ./skills/ /var/lib/snips/skills/ 
+COPY mbrola /usr/bin/mbrola && chmod 777 /usr/bin/mbrola
 
 #RUN modinfo snd-aloop
 #RUN modprobe snd-aloop	
+
+#python libraries
+
+RUN cd /opt && pip3 install configparser pyalsaaudio protobuf
 	
 RUN set -x && \
 	pip3 install virtualenv
