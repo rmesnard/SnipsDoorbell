@@ -46,6 +46,10 @@ snips-template render
 
 #goto skill directory
 
+if [ -e /usr/share/snips/assistant ]; then
+	rm -f /etc/snips.toml
+	cp -f /usr/share/snips/config/snips.toml /etc/snips.toml
+fi
 
 if [ -d "/usr/share/snips/skills" ]; then
 	echo "use shared skills."
@@ -53,14 +57,12 @@ if [ -d "/usr/share/snips/skills" ]; then
 	chmod -R 777 /var/lib/snips/skills
 fi
 
-
 if [ ! -d "/usr/share/snips/skills" ]; then
 	echo "share skills."
 	mkdir /usr/share/snips/skills
 	cp -R -f /var/lib/snips/skills /usr/share/snips
 fi
 chmod -R 777 /usr/share/snips/skills
-
 
 
 #download required skills from git
