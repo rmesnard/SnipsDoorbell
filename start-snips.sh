@@ -126,6 +126,7 @@ echo "Start doorbell"
 cd /usr/share/snips/extra
 python3 doorbell.py
 
+echo "all ok"
 
 wait "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_skill_server_pid" "$snips_audio_server_pid"
 
