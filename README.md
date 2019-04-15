@@ -45,3 +45,6 @@ docker run -d -p <IP HERE>:445:445 \
   -s "snips_log:/share/log:rw:admin" 
 
 
+#console
+
+docker exec -it snips-doorbell bash
