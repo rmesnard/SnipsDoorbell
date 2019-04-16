@@ -1,20 +1,12 @@
 {
   "parsers_metadata": [
     {
-      "entity_identifier": "device_name_jeedom",
+      "entity_identifier": "snips/default--answer",
       "entity_parser": "parser_1"
     },
     {
-      "entity_identifier": "house_room_kit",
-      "entity_parser": "parser_2"
-    },
-    {
-      "entity_identifier": "snips/default--answer",
-      "entity_parser": "parser_3"
-    },
-    {
       "entity_identifier": "visitor",
-      "entity_parser": "parser_4"
+      "entity_parser": "parser_2"
     }
   ]
 }

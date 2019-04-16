@@ -14,7 +14,6 @@
       {
         "args": {
           "common_words_gazetteer_name": "top_10000_words_stemmed",
-          "language_code": "fr",
           "n": 1,
           "use_stemming": true
         },
@@ -30,7 +29,6 @@
       {
         "args": {
           "common_words_gazetteer_name": "top_10000_words_stemmed",
-          "language_code": "fr",
           "n": 2,
           "use_stemming": true
         },
@@ -69,10 +67,6 @@
       },
       {
         "args": {
-          "entities": [
-            "device_name_jeedom",
-            "house_room_kit"
-          ],
           "tagging_scheme_code": 2,
           "use_stemming": true
         },
@@ -86,16 +80,6 @@
       },
       {
         "args": {
-          "entity_labels": [
-            "snips/amountOfMoney",
-            "snips/datetime",
-            "snips/duration",
-            "snips/number",
-            "snips/ordinal",
-            "snips/percentage",
-            "snips/temperature"
-          ],
-          "language_code": "fr",
           "tagging_scheme_code": 1
         },
         "factory_name": "builtin_entity_match",
@@ -110,11 +94,8 @@
     "tagging_scheme": 1,
     "unit_name": "crf_slot_filler"
   },
-  "crf_model_file": "modelhUr4g4.crfsuite",
-  "intent": "relayTurnOff",
+  "crf_model_file": null,
+  "intent": "rmesnard:sayyes",
   "language_code": "fr",
-  "slot_name_mapping": {
-    "device": "device_name_jeedom",
-    "house_room": "house_room_kit"
-  }
+  "slot_name_mapping": {}
 }

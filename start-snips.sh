@@ -17,6 +17,7 @@ fi
 
 echo "Install config."
 if [ ! -d "/usr/share/snips/config" ]; then
+  echo "Install default config."
   mkdir /usr/share/snips/config
   cp -R -f /config /usr/share/snips
 fi
@@ -27,6 +28,7 @@ cp -f /usr/share/snips/config/asound.conf /etc/asound.conf
 
 echo "Install extra."
 if [ ! -d "/usr/share/snips/extra" ]; then
+  echo "Install default extra."
   mkdir /usr/share/snips/extra
   cp -R -f /extra /usr/share/snips
 fi
@@ -34,6 +36,7 @@ chmod -R 777 /usr/share/snips/extra
 
 echo "Install assistant."
 if [ ! -d "/usr/share/snips/assistant" ]; then
+  echo "Install default assistant."
   mkdir /usr/share/snips/assistant
   cp -R -f /assistant /usr/share/snips
 fi
@@ -47,8 +50,10 @@ snips-template render
 #goto skill directory
 
 if [ -d /usr/share/snips/config ]; then
+	echo "use shared config."
 	rm -f /etc/snips.toml
 	cp -f /usr/share/snips/config/snips.toml /etc/snips.toml
+	chmod -R 777 /etc/snips.toml
 fi
 
 if [ -d "/usr/share/snips/skills" ]; then
@@ -63,14 +68,6 @@ if [ ! -d "/usr/share/snips/skills" ]; then
 	cp -R -f /var/lib/snips/skills /usr/share/snips
 fi
 chmod -R 777 /usr/share/snips/skills
-
-
-#download required skills from git
-#for url in $(awk '$1=="url:" {print $2}' /usr/share/snips/assistant/Snipsfile.yaml); do
-#	git clone $url
-#done
-
-#copy skills from shared
 
 
 #be sure we are still in the skill directory
@@ -147,7 +144,7 @@ if [ $ENABLE_INTERCOM == yes ]; then
 	nohup python3 -u intercom.py > /var/log/doorbell.log &
 fi
 
-echo "all ok"
+echo "running ok"
 
 wait "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_skill_server_pid" "$snips_audio_server_pid"
 

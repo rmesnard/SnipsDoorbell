@@ -1,29 +1,15 @@
 {
     "snips/default--answer": {
-        "vanilla": "e39bfa5c-56e3-437d-8854-c702543ecbd9.vanilla", 
+        "vanilla": "a58fbdba-2856-43d2-9cb7-d9a0485c28dc.vanilla", 
         "ngram": true, 
-        "added": "e39bfa5c-56e3-437d-8854-c702543ecbd9.added", 
-        "pruningThresholds": [], 
-        "order": 3
-    }, 
-    "house_room_kit": {
-        "vanilla": "80b4ddf1-4605-4275-a2f1-308ed4c41934.vanilla", 
-        "ngram": true, 
-        "added": "80b4ddf1-4605-4275-a2f1-308ed4c41934.added", 
-        "pruningThresholds": [], 
-        "order": 3
-    }, 
-    "device_name_jeedom": {
-        "vanilla": "ca8b6c3a-f773-4a17-b879-d9347da789f2.vanilla", 
-        "ngram": true, 
-        "added": "ca8b6c3a-f773-4a17-b879-d9347da789f2.added", 
+        "added": "a58fbdba-2856-43d2-9cb7-d9a0485c28dc.added", 
         "pruningThresholds": [], 
         "order": 3
     }, 
     "visitor": {
-        "vanilla": "b9fd4ffe-b9ea-4553-a2d4-7d1ef2e13e03.vanilla", 
+        "vanilla": "6b3a55e3-8307-4637-a14e-8ceccb58596f.vanilla", 
         "ngram": true, 
-        "added": "b9fd4ffe-b9ea-4553-a2d4-7d1ef2e13e03.added", 
+        "added": "6b3a55e3-8307-4637-a14e-8ceccb58596f.added", 
         "pruningThresholds": [], 
         "order": 3
     }

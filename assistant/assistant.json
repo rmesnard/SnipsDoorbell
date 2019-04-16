@@ -2,6 +2,22 @@
   "id" : "proj_E6gNnyWBnM9",
   "name" : "doorbell",
   "intents" : [ {
+    "id" : "rmesnard:sayyes",
+    "type" : "registry",
+    "version" : "0.7.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "sayyes",
+    "enabledByDefault" : false
+  }, {
+    "id" : "rmesnard:sayno",
+    "type" : "registry",
+    "version" : "0.2.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "sayno",
+    "enabledByDefault" : false
+  }, {
     "id" : "rmesnard:servicename",
     "type" : "registry",
     "version" : "0.2.0",
@@ -28,74 +44,6 @@
       "required" : false
     } ],
     "name" : "getmessage",
-    "enabledByDefault" : true
-  }, {
-    "id" : "checkHumidity",
-    "type" : "registry",
-    "version" : "1.0.0",
-    "language" : "fr",
-    "slots" : [ {
-      "name" : "house_room",
-      "id" : "slot_imported_mxcjzyGCo",
-      "entityId" : "entity_zq37QYxoxOr",
-      "missingQuestion" : "",
-      "required" : false
-    } ],
-    "name" : "checkHumidity",
-    "enabledByDefault" : true
-  }, {
-    "id" : "relayTurnOff",
-    "type" : "registry",
-    "version" : "1.0.0",
-    "language" : "fr",
-    "slots" : [ {
-      "name" : "device",
-      "id" : "slot_imported_TQ4RWNFQR",
-      "entityId" : "entity_zmn9YQ7vZpx",
-      "missingQuestion" : "",
-      "required" : false
-    }, {
-      "name" : "house_room",
-      "id" : "slot_imported_XPbkPf0rWY",
-      "entityId" : "entity_zq37QYxoxOr",
-      "missingQuestion" : "",
-      "required" : false
-    } ],
-    "name" : "relayTurnOff",
-    "enabledByDefault" : true
-  }, {
-    "id" : "relayTurnOn",
-    "type" : "registry",
-    "version" : "1.0.0",
-    "language" : "fr",
-    "slots" : [ {
-      "name" : "device",
-      "id" : "slot_imported_ZdbkihOlL",
-      "entityId" : "entity_zmn9YQ7vZpx",
-      "missingQuestion" : "",
-      "required" : false
-    }, {
-      "name" : "house_room",
-      "id" : "slot_imported_unx1YFld4E",
-      "entityId" : "entity_zq37QYxoxOr",
-      "missingQuestion" : "",
-      "required" : false
-    } ],
-    "name" : "relayTurnOn",
-    "enabledByDefault" : true
-  }, {
-    "id" : "checkTemperature",
-    "type" : "registry",
-    "version" : "1.0.0",
-    "language" : "fr",
-    "slots" : [ {
-      "name" : "house_room",
-      "id" : "slot_imported_lLi-uMMRW",
-      "entityId" : "entity_zq37QYxoxOr",
-      "missingQuestion" : "",
-      "required" : false
-    } ],
-    "name" : "checkTemperature",
     "enabledByDefault" : true
   } ],
   "createdAt" : "2019-01-25T18:03:51.520Z",

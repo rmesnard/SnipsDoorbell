@@ -128,28 +128,20 @@
   },
   "slot_fillers": [
     {
-      "intent": "checkHumidity",
+      "intent": "rmesnard:getmessage",
       "slot_filler_name": "slot_filler_0"
     },
     {
-      "intent": "checkTemperature",
+      "intent": "rmesnard:sayno",
       "slot_filler_name": "slot_filler_1"
     },
     {
-      "intent": "relayTurnOff",
+      "intent": "rmesnard:sayyes",
       "slot_filler_name": "slot_filler_2"
     },
     {
-      "intent": "relayTurnOn",
-      "slot_filler_name": "slot_filler_3"
-    },
-    {
-      "intent": "rmesnard:getmessage",
-      "slot_filler_name": "slot_filler_4"
-    },
-    {
       "intent": "rmesnard:servicename",
-      "slot_filler_name": "slot_filler_5"
+      "slot_filler_name": "slot_filler_3"
     }
   ]
 }

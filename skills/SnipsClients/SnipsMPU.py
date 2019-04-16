@@ -7,7 +7,7 @@ from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
 
 class SnipsMPU(object):
-    def __init__(self, i18n, mqtt_addr, site_id, relay, sht31):
+    def __init__(self, i18n, mqtt_addr, site_id, relay, sht31, pir):
         self.THRESHOLD_INTENT_CONFSCORE_DROP = 0.3
         self.THRESHOLD_INTENT_CONFSCORE_TAKE = 0.6
 
@@ -15,6 +15,7 @@ class SnipsMPU(object):
         self.__site_id = site_id
         self.__relay = relay
         self.__sht31 = sht31
+		self.__pir = pir
 
         self.__mqtt_addr = mqtt_addr
 
@@ -49,9 +50,9 @@ class SnipsMPU(object):
 
     @check_confidence_score
     @check_site_id
-    def handler_relay_turn_on(self, hermes, intent_message):
-        print("Relay Turn On")
-        self.__relay.turn_on()
+    def handler_servicename(self, hermes, intent_message):
+        print("Relay servicename On")
+        #self.__relay.turn_on()
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOn')
@@ -59,9 +60,9 @@ class SnipsMPU(object):
 
     @check_confidence_score
     @check_site_id
-    def handler_relay_turn_off(self, hermes, intent_message):
-        print("Relay Turn Off")
-        self.__relay.turn_off()
+    def handler_getmessage(self, hermes, intent_message):
+        print("left a message")
+        #self.__relay.turn_off()
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOff')
@@ -69,9 +70,9 @@ class SnipsMPU(object):
 
     @check_confidence_score
     @check_site_id
-    def handler_check_humidity(self, hermes, intent_message):
-        print("Humidity Check")
-        humidity = self.__sht31.get_humidity_string()
+    def handler_sayyes(self, hermes, intent_message):
+        print("answer yes")
+        #humidity = self.__sht31.get_humidity_string()
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('checkHumidity', {"humidity": humidity})
@@ -79,9 +80,9 @@ class SnipsMPU(object):
 
     @check_confidence_score
     @check_site_id
-    def handler_check_temperature(self, hermes, intent_message):
-        print("Temperature Check")
-        temperature = self.__sht31.get_temperature_string()
+    def handler_sayno(self, hermes, intent_message):
+        print("answer no")
+        #temperature = self.__sht31.get_temperature_string()
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('checkTemperature', {"temperature": temperature})
@@ -90,19 +91,19 @@ class SnipsMPU(object):
     def start_block(self):
         with Hermes(self.__mqtt_addr) as h:
             h.subscribe_intent(
-                'relayTurnOn',
-                self.handler_relay_turn_on
+                'servicename',
+                self.handler_servicename
             ) \
              .subscribe_intent(
-                'relayTurnOff',
-                self.handler_relay_turn_off
+                'getmessage',
+                self.handler_getmessage
             ) \
              .subscribe_intent(
-                'checkHumidity',
-                self.handler_check_humidity
+                'sayyes',
+                self.handler_sayyes
             ) \
              .subscribe_intent(
-                'checkTemperature',
-                self.handler_check_temperature
+                'sayno',
+                self.handler_sayno
             ) \
              .start()

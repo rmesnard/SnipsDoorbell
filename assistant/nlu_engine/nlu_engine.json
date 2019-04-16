@@ -141,12 +141,6 @@
   "custom_entity_parser": "custom_entity_parser",
   "dataset_metadata": {
     "entities": {
-      "device_name_jeedom": {
-        "automatically_extensible": false
-      },
-      "house_room_kit": {
-        "automatically_extensible": false
-      },
       "snips/default--answer": {
         "automatically_extensible": false
       },
@@ -156,21 +150,9 @@
     },
     "language_code": "fr",
     "slot_name_mappings": {
-      "checkHumidity": {
-        "house_room": "house_room_kit"
-      },
-      "checkTemperature": {
-        "house_room": "house_room_kit"
-      },
-      "relayTurnOff": {
-        "device": "device_name_jeedom",
-        "house_room": "house_room_kit"
-      },
-      "relayTurnOn": {
-        "device": "device_name_jeedom",
-        "house_room": "house_room_kit"
-      },
       "rmesnard:getmessage": {},
+      "rmesnard:sayno": {},
+      "rmesnard:sayyes": {},
       "rmesnard:servicename": {
         "service": "visitor"
       }
