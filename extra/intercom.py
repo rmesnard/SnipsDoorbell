@@ -9,9 +9,9 @@ class ListenMumble:
 
     def __init__(self):
         config = configparser.ConfigParser()
-        config.read('doorbell.ini')
-        self.mumble_client = MumbleClient(config['doorbell'])
-        self.exit = True
+        config.read('/usr/share/snips/config/snips.toml')
+        self.mumble_client = MumbleClient(config['mumble'])
+        self.exit = False
 
 
     def run(self):
