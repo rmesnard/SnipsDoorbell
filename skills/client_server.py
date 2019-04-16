@@ -3,33 +3,33 @@ import alsaaudio
 
 class MumbleClient:
     def __init__(self, config):
-        debug = int(config['debug']) == 1
-        self.mumble = Mumble(config['host'], config['user'], debug=debug)
+        debug = int(config.get('debug')) == 1
+        self.mumble = Mumble(str(config.get('host')), str(config.get('user')), debug=debug)
         self.mumble.start()
         self.mumble.is_ready()
 
         self.mumble.set_receive_sound(True)
         self.mumble.users.myself.unmute()
 
-        self.mumble.channels.find_by_name(config['channel']).move_in()
-        self.mumble.set_bandwidth(int(config['bandwith']))
+        self.mumble.channels.find_by_name(str(config.get('channel'))).move_in()
+        self.mumble.set_bandwidth(int(config.get('bandwith')))
 
         self.mumble.callbacks.set_callback(
             constants.PYMUMBLE_CLBK_SOUNDRECEIVED, self.receive_sound)
 
         self.output_device2 = alsaaudio.PCM(
-            alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, config['audio_out'])
-        self.output_device2.setchannels(int(config['channels']))
-        self.output_device2.setrate(int(config['bitrate']))
+            alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, str(config.get('audio_out')))
+        self.output_device2.setchannels(int(config.get('channels')))
+        self.output_device2.setrate(int(config.get('bitrate')))
         self.output_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-        self.output_device2.setperiodsize(int(config['periodsize']))
+        self.output_device2.setperiodsize(int(config.get('periodsize')))
 
         self.input_device2 = alsaaudio.PCM(
-            alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, config['audio_in'])
-        self.input_device2.setchannels(int(config['channels']))
-        self.input_device2.setrate(int(config['bitrate']))
+            alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, str(config.get('audio_in')))
+        self.input_device2.setchannels(int(config.get('channels')))
+        self.input_device2.setrate(int(config.get('bitrate')))
         self.input_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-        self.input_device2.setperiodsize(int(config['periodsize']))
+        self.input_device2.setperiodsize(int(config.get('periodsize')))
 
     def receive_sound(self, info, sound_chunk):
         self.output_device2.write(sound_chunk.pcm)

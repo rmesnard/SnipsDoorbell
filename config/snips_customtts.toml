@@ -2,7 +2,7 @@
 bus = "mqtt"
 mqtt = "192.168.2.101:1883"
 # audio = ["+@mqtt"]
-# assistant = "/usr/share/snips/assistant"
+assistant = "/usr/share/snips/assistant"
 # user_dir = "/var/lib/snips"
 
 ## MQTT authentication
@@ -32,7 +32,7 @@ mqtt = "192.168.2.101:1883"
 [snips-audio-server]
 # frame = 256
 bind = "server@mqtt"
-# mike = "Built-in Microphone"
+mike = "myInput"
 # disable_playback = false
 
 [snips-dialogue]
@@ -67,14 +67,14 @@ provider = "customtts"
 customtts = { command = ["espeak", "-vmb-fr1", "-p30", "-s130", "-w%%OUTPUT_FILE%%", "%%TEXT%%"] }
 
 [mumble]
-host = 192.168.2.104
-user = snipsdoorbell
-channel = Root
-audio_in = myInput
-audio_out = plughw:1,0
-bitrate = 48000
+host = "192.168.2.104"
+user = "snipsdoorbell"
+channel = "Root"
+audio_in = "myInput"
+audio_out = "plughw:1,0"
+bitrate = 16000
 periodsize = 1920
-# Mono, pymumble propably does not support stereo
+# Mono, pymumble does not support stereo
 channels = 1
 bandwith = 200000
 # Debug 0 or 1

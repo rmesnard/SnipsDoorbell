@@ -8,10 +8,10 @@ from SnipsClients import SnipsMPU
 
 VERSION = '1.0.0'
 
-CONFIG_INI = 'config.ini'
+CONFIG_FILE = 'config.ini'
 I18N_DIR = 'assets/i18n'
 
-config = SnipsConfigParser.read_configuration_file(CONFIG_INI).get('global')
+config = SnipsConfigParser.read_configuration_file(CONFIG_FILE).get('global')
 
 MQTT_ADDR_HOST = str(config.get('mqtt_host'))
 MQTT_ADDR_PORT = str(config.get('mqtt_port'))

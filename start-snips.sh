@@ -26,14 +26,6 @@ chmod -R 777 /usr/share/snips/config
 rm -f /etc/asound.conf
 cp -f /usr/share/snips/config/asound.conf /etc/asound.conf
 
-echo "Install extra."
-if [ ! -d "/usr/share/snips/extra" ]; then
-  echo "Install default extra."
-  mkdir /usr/share/snips/extra
-  cp -R -f /extra /usr/share/snips
-fi
-chmod -R 777 /usr/share/snips/extra
-
 echo "Install assistant."
 if [ ! -d "/usr/share/snips/assistant" ]; then
   echo "Install default assistant."
@@ -140,7 +132,7 @@ echo "snips services started.. check logs"
 
 if [ $ENABLE_INTERCOM == yes ]; then
 	echo "Start intercom"
-	cd /usr/share/snips/extra
+	cd /var/lib/snips/skills
 	nohup python3 -u intercom.py > /var/log/doorbell.log &
 fi
 

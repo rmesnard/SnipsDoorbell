@@ -32,7 +32,7 @@ sudo docker run -d --name snips-doorbell \
 	-e ENABLE_MQTT=no \
 	-e ENABLE_HOTWORD_SERVICE=yes \
 	-p 1883:1883 \
-	rmesnard/snipsdoorbell
+	lijah/snips-doorbell
 
 #share config 
 

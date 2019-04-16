@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import configparser
+from snipsTools import *
 import time
 
 from client_server import MumbleClient
@@ -8,8 +8,7 @@ from client_server import MumbleClient
 class ListenMumble:
 
     def __init__(self):
-        config = configparser.ConfigParser()
-        config.read('/usr/share/snips/config/snips.toml')
+        config = SnipsConfigParser.read_configuration_file('/usr/share/snips/config/snips.toml').get('mumble')
         self.mumble_client = MumbleClient(config['mumble'])
         self.exit = False
 

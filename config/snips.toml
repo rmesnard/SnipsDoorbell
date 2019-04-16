@@ -2,7 +2,7 @@
 bus = "mqtt"
 mqtt = "192.168.2.101:1883"
 # audio = ["+@mqtt"]
-# assistant = "/usr/share/snips/assistant"
+assistant = "/usr/share/snips/assistant"
 # user_dir = "/var/lib/snips"
 
 ## MQTT authentication
@@ -32,7 +32,7 @@ mqtt = "192.168.2.101:1883"
 [snips-audio-server]
 # frame = 256
 bind = "server@mqtt"
-# mike = "Built-in Microphone"
+mike = "myInput"
 # disable_playback = false
 
 [snips-dialogue]
@@ -57,20 +57,21 @@ audio = ["server@mqtt"]
 
 [snips-tts]
 ## Choose one tts provider (defaults to picotts)
-provider = "picotts"
+# provider = "picotts"
 # provider = "makerstts"
-# provider = "customtts"
+provider = "customtts"
 ## customtts specific configuration (here configured to use picotts using the en-US language)
 ## available placeholder variables : %%OUTPUT_FILE%%, %%LANG%%, %%TEXT%%
 ## { command = ["/home/pi/ProjectAlice/shell/snipsSuperTTS.sh", "%%OUTPUT_FILE%%", "amazon", "%%LANG%%", "US", "Joanna", "FEMALE", "%%TEXT%%", "22050"] }
-## customtts = { command = ["espeak", "-vmb-fr1", "-p30", "-s130", "-w%%OUTPUT_FILE%%", "%%TEXT%%"] }
+##  espeak -vmb-fr1 -p30 -s 130 "ceci est un test de prononciation fransaise"
+customtts = { command = ["espeak", "-vmb-fr1", "-p30", "-s130", "-w%%OUTPUT_FILE%%", "%%TEXT%%"] }
 
 [mumble]
-host = 192.168.2.104
-user = snipsdoorbell
-channel = Root
-audio_in = myInput
-audio_out = plughw:1,0
+host = "192.168.2.104"
+user = "snipsdoorbell"
+channel = "Root"
+audio_in = "myInput"
+audio_out = "plughw:1,0"
 bitrate = 48000
 periodsize = 1920
 # Mono, pymumble propably does not support stereo

@@ -37,7 +37,6 @@ RUN set -x && \
 	usermod -aG snips-skills-admin root
 
 COPY ./config/ /config/ 
-COPY ./extra/ /extra/ 
 COPY ./assistant/ /assistant/ 
 COPY ./skills/ /var/lib/snips/skills/ 
 COPY mbrola mbrola
