@@ -4,7 +4,7 @@ set -e
 #verify that environment variables have been passed to this container. set the default value if not.
 ENABLE_MQTT=${ENABLE_MQTT:-yes}
 ENABLE_HOTWORD_SERVICE=${ENABLE_HOTWORD_SERVICE:-yes}
-
+ENABLE_INTERCOM=${ENABLE_INTERCOM:-yes}
 
 if [ -d "/usr/share/snips/mbrola" ]; then
 	echo "Install mbrola voices:"
@@ -141,17 +141,13 @@ snips_audio_server_pid=$!
 
 echo "snips services started.. check logs"
 
-#run loopback
-#modinfo snd-aloop
-#modprobe snd-aloop	
 if [ $ENABLE_INTERCOM == yes ]; then
 	echo "Start intercom"
 	cd /usr/share/snips/extra
 	nohup python3 -u intercom.py > /var/log/doorbell.log &
-	snips_mumble_pid=$!
 fi
 
 echo "all ok"
 
-wait "$snips_mumble_pid" "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_skill_server_pid" "$snips_audio_server_pid"
+wait "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_skill_server_pid" "$snips_audio_server_pid"
 
