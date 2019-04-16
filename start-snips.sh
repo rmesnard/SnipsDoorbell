@@ -144,12 +144,14 @@ echo "snips services started.. check logs"
 #run loopback
 #modinfo snd-aloop
 #modprobe snd-aloop	
-
-echo "Start doorbell"
-cd /usr/share/snips/extra
-python3 doorbell.py
+if [ $ENABLE_INTERCOM == yes ]; then
+	echo "Start intercom"
+	cd /usr/share/snips/extra
+	nohup python3 -u intercom.py > /var/log/doorbell.log &
+	snips_mumble_pid=$!
+fi
 
 echo "all ok"
 
-wait "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_skill_server_pid" "$snips_audio_server_pid"
+wait "$snips_mumble_pid" "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_skill_server_pid" "$snips_audio_server_pid"
 
