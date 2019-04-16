@@ -46,7 +46,7 @@ snips-template render
 
 #goto skill directory
 
-if [ -e /usr/share/snips/assistant ]; then
+if [ -d /usr/share/snips/config ]; then
 	rm -f /etc/snips.toml
 	cp -f /usr/share/snips/config/snips.toml /etc/snips.toml
 fi
