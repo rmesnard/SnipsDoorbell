@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import configparser
 import time
 
@@ -9,7 +11,7 @@ class ListenMumble:
         config = configparser.ConfigParser()
         config.read('doorbell.ini')
         self.mumble_client = MumbleClient(config['doorbell'])
-        self.exit = False
+        self.exit = True
 
 
     def run(self):

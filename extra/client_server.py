@@ -18,14 +18,14 @@ class MumbleClient:
             constants.PYMUMBLE_CLBK_SOUNDRECEIVED, self.receive_sound)
 
         self.output_device2 = alsaaudio.PCM(
-            alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, config['snipsout'])
+            alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, config['audio_out'])
         self.output_device2.setchannels(int(config['channels']))
         self.output_device2.setrate(int(config['bitrate']))
         self.output_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
         self.output_device2.setperiodsize(int(config['periodsize']))
 
         self.input_device2 = alsaaudio.PCM(
-            alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, config['snipsin'])
+            alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, config['audio_in'])
         self.input_device2.setchannels(int(config['channels']))
         self.input_device2.setrate(int(config['bitrate']))
         self.input_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
