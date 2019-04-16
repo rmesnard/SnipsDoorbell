@@ -44,7 +44,7 @@ chmod -R 777 /usr/share/snips/assistant
 
 echo "Deploy assistant."
 
-#deploy apps (skills). See: https://snips.gitbook.io/documentation/console/deploying-your-skills
+#deploy apps (skills).
 snips-template render
 
 #goto skill directory
