@@ -25,16 +25,6 @@ RUN set -x && \
 RUN set -x && \
 	apt-get install -y snips-makers-tts alsa-utils snips-platform-voice snips-skill-server mosquitto snips-analytics snips-asr snips-audio-server snips-dialogue snips-hotword snips-nlu curl unzip snips-template python3-pip python3-setuptools python3-wheel libasound2-dev libasound2 libasound2-data git espeak
 	
-
-COPY ./config/ /config/ 
-COPY ./extra/ /extra/ 
-COPY ./assistant/ /assistant/ 
-COPY ./skills/ /var/lib/snips/skills/ 
-COPY mbrola mbrola
-
-#RUN modinfo snd-aloop
-#RUN modprobe snd-aloop	
-
 #python libraries
 
 RUN cd /opt && pip3 install configparser pyalsaaudio protobuf
@@ -45,10 +35,15 @@ RUN set -x && \
 #Is this really required? 
 RUN set -x && \	
 	usermod -aG snips-skills-admin root
-	
+
+COPY ./config/ /config/ 
+COPY ./extra/ /extra/ 
+COPY ./assistant/ /assistant/ 
+COPY ./skills/ /var/lib/snips/skills/ 
+COPY mbrola mbrola
+
 COPY start-snips.sh start-snips.sh
 
 EXPOSE 1833/tcp
-
 
 CMD ["bash","/start-snips.sh"]
