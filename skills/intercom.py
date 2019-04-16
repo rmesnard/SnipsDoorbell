@@ -9,7 +9,7 @@ class ListenMumble:
 
     def __init__(self):
         config = SnipsConfigParser.read_configuration_file('/usr/share/snips/config/snips.toml').get('mumble')
-        self.mumble_client = MumbleClient(config['mumble'])
+        self.mumble_client = MumbleClient(config)
         self.exit = False
 
 

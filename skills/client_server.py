@@ -4,28 +4,30 @@ import alsaaudio
 class MumbleClient:
     def __init__(self, config):
         debug = int(config.get('debug')) == 1
-        self.mumble = Mumble(str(config.get('host')), str(config.get('user')), debug=debug)
+        print('debug mumble')
+        print(str(config.get('user')).replace('"', ''))
+        self.mumble = Mumble(str(config.get('host')).replace('"', ''), str(config.get('user')).replace('"', ''), debug=debug)
         self.mumble.start()
         self.mumble.is_ready()
 
         self.mumble.set_receive_sound(True)
         self.mumble.users.myself.unmute()
 
-        self.mumble.channels.find_by_name(str(config.get('channel'))).move_in()
+        self.mumble.channels.find_by_name(str(config.get('channel')).replace('"', '')).move_in()
         self.mumble.set_bandwidth(int(config.get('bandwith')))
 
         self.mumble.callbacks.set_callback(
             constants.PYMUMBLE_CLBK_SOUNDRECEIVED, self.receive_sound)
 
         self.output_device2 = alsaaudio.PCM(
-            alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, str(config.get('audio_out')))
+            alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, str(config.get('audio_out')).replace('"', ''))
         self.output_device2.setchannels(int(config.get('channels')))
         self.output_device2.setrate(int(config.get('bitrate')))
         self.output_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
         self.output_device2.setperiodsize(int(config.get('periodsize')))
 
         self.input_device2 = alsaaudio.PCM(
-            alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, str(config.get('audio_in')))
+            alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, str(config.get('audio_in')).replace('"', ''))
         self.input_device2.setchannels(int(config.get('channels')))
         self.input_device2.setrate(int(config.get('bitrate')))
         self.input_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
