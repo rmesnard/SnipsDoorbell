@@ -1,11 +1,5 @@
 FROM raspbian/stretch
 
-#Change the timezone to your current timezone!!
-ENV TZ=Europe/PARIS
-
-RUN set -x && \ 
-	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
 RUN set -x && \
 	apt-get update && apt-get dist-upgrade -y
  
