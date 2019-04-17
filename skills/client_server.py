@@ -19,22 +19,29 @@ class MumbleClient:
         self.mumble.callbacks.set_callback(
             constants.PYMUMBLE_CLBK_SOUNDRECEIVED, self.receive_sound)
 
-        self.output_device2 = alsaaudio.PCM(
+        self.output_device1 = alsaaudio.PCM(
             alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, str(config.get('audio_out')).replace('"', ''))
-        self.output_device2.setchannels(int(config.get('channels')))
-        self.output_device2.setrate(int(config.get('bitrate')))
-        self.output_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-        self.output_device2.setperiodsize(int(config.get('periodsize')))
+        self.output_device1.setchannels(int(config.get('channels')))
+        self.output_device1.setrate(int(config.get('bitrate')))
+        self.output_device1.setformat(alsaaudio.PCM_FORMAT_S16_LE)
+        self.output_device1.setperiodsize(int(config.get('periodsize')))
+        
+        # self.output_device2 = alsaaudio.PCM(
+            # alsaaudio.PCM_PLAYBACK, alsaaudio.PCM_NONBLOCK, str(config.get('snips_in')).replace('"', ''))
+        # self.output_device2.setchannels(int(config.get('channels')))
+        # self.output_device2.setrate(int(config.get('bitrate')))
+        # self.output_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
+        # self.output_device2.setperiodsize(int(config.get('periodsize')))
 
-        self.input_device2 = alsaaudio.PCM(
+        self.input_device1 = alsaaudio.PCM(
             alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, str(config.get('audio_in')).replace('"', ''))
-        self.input_device2.setchannels(int(config.get('channels')))
-        self.input_device2.setrate(int(config.get('bitrate')))
-        self.input_device2.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-        self.input_device2.setperiodsize(int(config.get('periodsize')))
+        self.input_device1.setchannels(int(config.get('channels')))
+        self.input_device1.setrate(int(config.get('bitrate')))
+        self.input_device1.setformat(alsaaudio.PCM_FORMAT_S16_LE)
+        self.input_device1.setperiodsize(int(config.get('periodsize')))
 
     def receive_sound(self, info, sound_chunk):
-        self.output_device2.write(sound_chunk.pcm)
+        self.output_device1.write(sound_chunk.pcm)
 
     def play_sound(self, sound_chunk):
         self.mumble.sound_output.add_sound(sound_chunk)
@@ -44,7 +51,8 @@ class MumbleClient:
 
     def send_input_audio(self):
 
-        length, data = self.input_device2.read()
+        length, data = self.input_device1.read()
 
         if length:
             self.play_sound(data)
+            # self.output_device2.write(data)

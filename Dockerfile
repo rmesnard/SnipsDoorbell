@@ -27,7 +27,7 @@ RUN set -x && \
 	
 #python libraries
 
-RUN cd /opt && pip3 install configparser pyalsaaudio protobuf RPi.GPIO smbus2 hermes-python
+RUN cd /opt && pip3 install configparser pyalsaaudio protobuf RPi.GPIO smbus2 hermes-python paho-mqtt
 	
 RUN set -x && \
 	pip3 install virtualenv
@@ -38,7 +38,7 @@ RUN set -x && \
 
 COPY ./config/ /config/ 
 COPY ./assistant/ /assistant/ 
-COPY ./skills/ /var/lib/snips/skills/ 
+COPY ./skills/ /skills/ 
 COPY mbrola mbrola
 
 COPY start-snips.sh start-snips.sh

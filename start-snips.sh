@@ -34,6 +34,15 @@ if [ ! -d "/usr/share/snips/assistant" ]; then
 fi
 chmod -R 777 /usr/share/snips/assistant
 
+
+echo "Install skills."
+if [ ! -d "/usr/share/snips/skills" ]; then
+  echo "Install default skills."
+  mkdir /usr/share/snips/skills
+  cp -R -f /skills /usr/share/snips
+fi
+chmod -R 777 /usr/share/snips/skills
+
 echo "Deploy assistant."
 
 #deploy apps (skills).
@@ -48,22 +57,8 @@ if [ -d /usr/share/snips/config ]; then
 	chmod -R 777 /etc/snips.toml
 fi
 
-if [ -d "/usr/share/snips/skills" ]; then
-	echo "use shared skills."
-	cp -R -f /usr/share/snips/skills /var/lib/snips
-	chmod -R 777 /var/lib/snips/skills
-fi
-
-if [ ! -d "/usr/share/snips/skills" ]; then
-	echo "share skills."
-	mkdir /usr/share/snips/skills
-	cp -R -f /var/lib/snips/skills /usr/share/snips
-fi
-chmod -R 777 /usr/share/snips/skills
-
-
 #be sure we are still in the skill directory
-cd /var/lib/snips/skills
+cd /usr/share/snips/skills
 
 #run setup.sh for each skill.
 find . -maxdepth 1 -type d -print0 | while IFS= read -r -d '' dir; do
@@ -73,7 +68,7 @@ find . -maxdepth 1 -type d -print0 | while IFS= read -r -d '' dir; do
 		#run the scrips always with bash
 		bash ./setup.sh
 	fi
-	cd /var/lib/snips/skills
+	cd /usr/share/snips/skills
 done
 
 #skill deployment is done
@@ -132,8 +127,9 @@ echo "snips services started.. check logs"
 
 if [ $ENABLE_INTERCOM == yes ]; then
 	echo "Start intercom"
-	cd /var/lib/snips/skills
-	nohup python3 -u intercom.py > /var/log/doorbell.log &
+	cd /usr/share/snips/skills
+	nohup python3 -u intercom.py 2> /var/log/doorbell.log &
+	snips_intercom=$!
 fi
 
 echo "running ok"
