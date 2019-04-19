@@ -21,14 +21,14 @@ RUN set -x && \
 	
 #python libraries
 
-RUN cd /opt && pip3 install configparser pyalsaaudio protobuf RPi.GPIO smbus2 hermes-python paho-mqtt
+RUN cd /opt && pip3 install configparser pyalsaaudio protobuf RPi.GPIO smbus2 hermes-python paho-mqtt spidev
 	
-RUN set -x && \
-	pip3 install virtualenv
+#RUN set -x && \
+#	pip3 install virtualenv
 
 #Is this really required? 
-RUN set -x && \	
-	usermod -aG snips-skills-admin root
+#RUN set -x && \	
+#	usermod -aG snips-skills-admin root
 
 COPY ./config/ /config/ 
 COPY ./assistant/ /assistant/ 

@@ -1,10 +1,11 @@
 [snips-common]
 bus = "mqtt"
 mqtt = "192.168.2.101:1883"
-# audio = ["+@mqtt"]
+site_id = "snipsdoorbell"
+audio = ["snipsdoorbell@mqtt"]
 assistant = "/usr/share/snips/assistant"
-# user_dir = "/var/lib/snips"
-
+user_dir = "/usr/share/snips"
+locale = "fr-FR"
 ## MQTT authentication
 # mqtt_username = ""
 # mqtt_password = ""
@@ -16,6 +17,17 @@ assistant = "/usr/share/snips/assistant"
 # mqtt_tls_capath = ""
 # mqtt_tls_client_cert = ""
 # mqtt_tls_client_key = ""
+
+# doorbell GPIO
+
+[snips-doorbell]
+relay_gpio_bcm = 12
+pir_gpio_bcm = 11
+temperature_unit = "celsius"
+button_gpio_bcm = 17
+
+[snips-homeassistant]
+
 
 [snips-analytics]
 
@@ -31,8 +43,8 @@ assistant = "/usr/share/snips/assistant"
 
 [snips-audio-server]
 # frame = 256
-bind = "server@mqtt"
-mike = "myInput"
+bind = "snipsdoorbell@mqtt"
+mike = "rpi"
 # disable_playback = false
 
 [snips-dialogue]
@@ -46,7 +58,7 @@ mike = "myInput"
 # model = "/usr/share/snips/hotword"
 # hotword_id = "default"
 # sensitivity = "0.5"
-audio = ["server@mqtt"]
+audio = ["snipsdoorbell@mqtt"]
 
 [snips-injection]
 #asr_model = "/usr/share/snips/asr"
@@ -57,26 +69,22 @@ audio = ["server@mqtt"]
 
 [snips-tts]
 ## Choose one tts provider (defaults to picotts)
-# provider = "picotts"
+provider = "picotts"
 # provider = "makerstts"
-provider = "customtts"
+#provider = "customtts"
 ## customtts specific configuration (here configured to use picotts using the en-US language)
 ## available placeholder variables : %%OUTPUT_FILE%%, %%LANG%%, %%TEXT%%
 ## { command = ["/home/pi/ProjectAlice/shell/snipsSuperTTS.sh", "%%OUTPUT_FILE%%", "amazon", "%%LANG%%", "US", "Joanna", "FEMALE", "%%TEXT%%", "22050"] }
 ##  espeak -vmb-fr1 -p30 -s 130 "ceci est un test de prononciation fransaise"
-customtts = { command = ["espeak", "-vmb-fr1", "-p30", "-s130", "-w%%OUTPUT_FILE%%", "%%TEXT%%"] }
+#customtts = { command = ["espeak", "-vmb-fr1", "-p30", "-s130", "-w%%OUTPUT_FILE%%", "%%TEXT%%"] }
 
-[mumble]
-host = "192.168.2.104"
-user = "snipsdoorbell"
-channel = "Root"
-audio_in = "myInput"
-audio_out = "plughw:1,0"
-bitrate = 48000
-periodsize = 1920
-# Mono, pymumble propably does not support stereo
+[snips-audio-player]
+audio_out = "rpi"
+bitrate = 16000
+periodsize = 800
 channels = 1
 bandwith = 200000
 # Debug 0 or 1
 debug = 0
+record_path = "/usr/share/snips/records"
 

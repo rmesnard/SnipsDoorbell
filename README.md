@@ -29,6 +29,7 @@ sudo docker run -d --name snips-doorbell \
 	-v snips_log:/var/log \
 	-v snips_config:/usr/share/snips \
 	--device=/dev/snd:/dev/snd \
+	--device=/dev/mem:/dev/mem \
 	-e ENABLE_MQTT=no \
 	-e ENABLE_HOTWORD_SERVICE=yes \
 	-p 1883:1883 \
@@ -48,3 +49,5 @@ docker run -d -p <IP HERE>:445:445 \
 #console
 
 docker exec -it snips-doorbell bash
+
+cd /usr/share/snips

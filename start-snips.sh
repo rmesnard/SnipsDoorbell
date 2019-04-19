@@ -45,9 +45,6 @@ chmod -R 777 /usr/share/snips/skills
 
 echo "Deploy assistant."
 
-#deploy apps (skills).
-snips-template render
-
 #goto skill directory
 
 if [ -d /usr/share/snips/config ]; then
@@ -56,24 +53,6 @@ if [ -d /usr/share/snips/config ]; then
 	cp -f /usr/share/snips/config/snips.toml /etc/snips.toml
 	chmod -R 777 /etc/snips.toml
 fi
-
-#be sure we are still in the skill directory
-cd /usr/share/snips/skills
-
-#run setup.sh for each skill.
-find . -maxdepth 1 -type d -print0 | while IFS= read -r -d '' dir; do
-	cd "$dir" 
-	if [ -f setup.sh ]; then
-		echo "Run setup.sh in "$dir
-		#run the scrips always with bash
-		bash ./setup.sh
-	fi
-	cd /usr/share/snips/skills
-done
-
-#skill deployment is done
-
-echo "skill deployment is done"
 
 #go back to root directory
 cd /
@@ -128,8 +107,10 @@ echo "snips services started.. check logs"
 if [ $ENABLE_INTERCOM == yes ]; then
 	echo "Start intercom"
 	cd /usr/share/snips/skills
-	nohup python3 -u intercom.py 2> /var/log/doorbell.log &
-	snips_intercom=$!
+	nohup python3 -u listerner.py 2> /var/log/listerner.log &
+	snips_audio_client=$!
+	nohup python3 -u doorbell.py 2> /var/log/doorbell.log &
+	snips_doorbell=$!	
 fi
 
 echo "running ok"
