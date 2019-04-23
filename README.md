@@ -28,6 +28,7 @@ sudo docker volume create snips_log
 sudo docker run -d --name snips-doorbell \
 	-v snips_log:/var/log \
 	-v snips_config:/usr/share/snips \
+	--privileged \
 	--device=/dev/snd:/dev/snd \
 	--device=/dev/mem:/dev/mem \
 	-e ENABLE_MQTT=no \
