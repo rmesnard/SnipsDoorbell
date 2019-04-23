@@ -1,12 +1,8 @@
 {
   "parsers_metadata": [
     {
-      "entity_identifier": "snips/default--answer",
-      "entity_parser": "parser_1"
-    },
-    {
       "entity_identifier": "visitor",
-      "entity_parser": "parser_2"
+      "entity_parser": "parser_1"
     }
   ]
 }

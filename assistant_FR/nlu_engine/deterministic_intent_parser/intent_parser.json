@@ -1,0 +1,46 @@
+{
+  "config": {
+    "ignore_stop_words": true,
+    "max_pattern_length": 1000,
+    "max_queries": 500,
+    "unit_name": "deterministic_intent_parser"
+  },
+  "group_names_to_slot_names": {
+    "group0": "service"
+  },
+  "language_code": "fr",
+  "patterns": {
+    "rmesnard:getmessage": [
+      "^\\s*laisse\\s*message\\s*$",
+      "^\\s*message\\s*$",
+      "^\\s*transmettre\\s*message\\s*$",
+      "^\\s*noter\\s*message\\s*$",
+      "^\\s*prendre\\s*message\\s*$",
+      "^\\s*je\\s*vais\\s*laisser\\s*message\\s*$",
+      "^\\s*laisser\\s*message\\s*$"
+    ],
+    "rmesnard:sayno": [
+      "^\\s*annuler\\s*$",
+      "^\\s*non\\s*$",
+      "^\\s*n\u00e9gatif\\s*$"
+    ],
+    "rmesnard:sayyes": [
+      "^\\s*affirmatif\\s*$",
+      "^\\s*yep\\s*$",
+      "^\\s*oui\\s*$"
+    ],
+    "rmesnard:servicename": [
+      "^\\s*est\\s*livreur\\s*(?P<group0>%VISITOR%)\\s*$",
+      "^\\s*est\\s*(?P<group0>%VISITOR%)\\s*$",
+      "^\\s*(?P<group0>%VISITOR%)\\s*$"
+    ]
+  },
+  "slot_names_to_entities": {
+    "rmesnard:getmessage": {},
+    "rmesnard:sayno": {},
+    "rmesnard:sayyes": {},
+    "rmesnard:servicename": {
+      "service": "visitor"
+    }
+  }
+}

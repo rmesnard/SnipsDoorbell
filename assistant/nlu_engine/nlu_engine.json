@@ -30,7 +30,7 @@
             "pvalue_threshold": 0.4,
             "tfidf_vectorizer_config": {
               "unit_name": "tfidf_vectorizer",
-              "use_stemming": true,
+              "use_stemming": false,
               "word_clusters_name": null
             },
             "unit_name": "featurizer"
@@ -127,6 +127,19 @@
                 -1,
                 0
               ]
+            },
+            {
+              "args": {
+                "cluster_name": "brown_clusters",
+                "use_stemming": false
+              },
+              "factory_name": "word_cluster",
+              "offsets": [
+                -2,
+                -1,
+                0,
+                1
+              ]
             }
           ],
           "random_seed": null,
@@ -141,14 +154,11 @@
   "custom_entity_parser": "custom_entity_parser",
   "dataset_metadata": {
     "entities": {
-      "snips/default--answer": {
-        "automatically_extensible": false
-      },
       "visitor": {
         "automatically_extensible": false
       }
     },
-    "language_code": "fr",
+    "language_code": "en",
     "slot_name_mappings": {
       "rmesnard:getmessage": {},
       "rmesnard:sayno": {},

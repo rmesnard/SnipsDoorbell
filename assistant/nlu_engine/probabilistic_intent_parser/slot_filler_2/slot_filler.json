@@ -88,6 +88,19 @@
           -1,
           0
         ]
+      },
+      {
+        "args": {
+          "cluster_name": "brown_clusters",
+          "use_stemming": false
+        },
+        "factory_name": "word_cluster",
+        "offsets": [
+          -2,
+          -1,
+          0,
+          1
+        ]
       }
     ],
     "random_seed": null,
@@ -96,6 +109,6 @@
   },
   "crf_model_file": null,
   "intent": "rmesnard:sayyes",
-  "language_code": "fr",
+  "language_code": "en",
   "slot_name_mapping": {}
 }

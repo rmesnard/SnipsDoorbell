@@ -1,0 +1,195 @@
+{
+    "entityNameToFilename": {
+        "visitor": "e_0.snips"
+    }, 
+    "intentNameToDisambigs": {
+        "rmesnard:servicename": {
+            "start": "`INTENT`3103acf1-b167-461a-8c25-53ab6fc48f2a`START", 
+            "end": "`INTENT`3103acf1-b167-461a-8c25-53ab6fc48f2a`END"
+        }, 
+        "rmesnard:sayyes": {
+            "start": "`INTENT`f24658c5-c8ea-41ac-9e5f-5a018e31ef31`START", 
+            "end": "`INTENT`f24658c5-c8ea-41ac-9e5f-5a018e31ef31`END"
+        }, 
+        "rmesnard:sayno": {
+            "start": "`INTENT`bbfe18e6-381a-4ed3-86b4-73c0589d8743`START", 
+            "end": "`INTENT`bbfe18e6-381a-4ed3-86b4-73c0589d8743`END"
+        }, 
+        "rmesnard:getmessage": {
+            "start": "`INTENT`4c40862c-0c81-410d-97a9-e2cc3b590f81`START", 
+            "end": "`INTENT`4c40862c-0c81-410d-97a9-e2cc3b590f81`END"
+        }, 
+        "d43d0db2-c1e2-4815-be16-499a7cba899c": {
+            "start": "`INTENT`d43d0db2-c1e2-4815-be16-499a7cba899c`START", 
+            "end": "`INTENT`d43d0db2-c1e2-4815-be16-499a7cba899c`END"
+        }
+    }, 
+    "injectionsEngine": {
+        "version": 2
+    }, 
+    "language": "fr", 
+    "decoderConfig": {
+        "useFinalProbs": true, 
+        "latticeBeamSize": 4.0, 
+        "mbrConfig": {
+            "confidenceAdditionnalExponent": 1.0, 
+            "unkProba": 0.5, 
+            "unkThreshold": 0.3
+        }, 
+        "maxActive": 2500, 
+        "minActive": 200, 
+        "acousticScale": 0.83, 
+        "beamSize": 12.0
+    }, 
+    "cacheSizeDynamic": 536870912, 
+    "asrModel": {
+        "version": "0.1.0"
+    }, 
+    "asrLmAdaptation": {
+        "version": "0.19.7"
+    }, 
+    "endpointingRules": {
+        "rule3": {
+            "maxRelativeCost": 8.0, 
+            "minTrailingSilence": 1.0, 
+            "minUtteranceLength": 0.0, 
+            "mustContainNonsilence": true
+        }, 
+        "rule2": {
+            "maxRelativeCost": 5.5, 
+            "minTrailingSilence": 0.7, 
+            "minUtteranceLength": 0.0, 
+            "mustContainNonsilence": true
+        }, 
+        "rule1": {
+            "maxRelativeCost": 10000000000.0, 
+            "minTrailingSilence": 4.0, 
+            "minUtteranceLength": 0.0, 
+            "mustContainNonsilence": false
+        }, 
+        "rule5": {
+            "maxRelativeCost": 10000000000.0, 
+            "minTrailingSilence": 0.0, 
+            "minUtteranceLength": 10.0, 
+            "mustContainNonsilence": false
+        }, 
+        "rule4": {
+            "maxRelativeCost": 2.5, 
+            "minTrailingSilence": 0.5, 
+            "minUtteranceLength": 0.0, 
+            "mustContainNonsilence": true
+        }
+    }, 
+    "postprocessors": [
+        {
+            "Regex": {
+                "pattern": "`INTENT`3103acf1-b167-461a-8c25-53ab6fc48f2a`START (.*?) `INTENT`3103acf1-b167-461a-8c25-53ab6fc48f2a`END", 
+                "flags": "i", 
+                "replacement": "$1"
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`3103acf1-b167-461a-8c25-53ab6fc48f2a`START ", 
+                "flags": "i", 
+                "replacement": ""
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`f24658c5-c8ea-41ac-9e5f-5a018e31ef31`START (.*?) `INTENT`f24658c5-c8ea-41ac-9e5f-5a018e31ef31`END", 
+                "flags": "i", 
+                "replacement": "$1"
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`f24658c5-c8ea-41ac-9e5f-5a018e31ef31`START ", 
+                "flags": "i", 
+                "replacement": ""
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`bbfe18e6-381a-4ed3-86b4-73c0589d8743`START (.*?) `INTENT`bbfe18e6-381a-4ed3-86b4-73c0589d8743`END", 
+                "flags": "i", 
+                "replacement": "$1"
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`bbfe18e6-381a-4ed3-86b4-73c0589d8743`START ", 
+                "flags": "i", 
+                "replacement": ""
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`4c40862c-0c81-410d-97a9-e2cc3b590f81`START (.*?) `INTENT`4c40862c-0c81-410d-97a9-e2cc3b590f81`END", 
+                "flags": "i", 
+                "replacement": "$1"
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`4c40862c-0c81-410d-97a9-e2cc3b590f81`START ", 
+                "flags": "i", 
+                "replacement": ""
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`d43d0db2-c1e2-4815-be16-499a7cba899c`START (.*?) `INTENT`d43d0db2-c1e2-4815-be16-499a7cba899c`END", 
+                "flags": "i", 
+                "replacement": "$1"
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`INTENT`d43d0db2-c1e2-4815-be16-499a7cba899c`START ", 
+                "flags": "i", 
+                "replacement": ""
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`ENTITY`8c124acf-e2b9-4652-a301-e82af5e67bb1`START (.*?) `ENTITY`8c124acf-e2b9-4652-a301-e82af5e67bb1`END", 
+                "flags": "i", 
+                "replacement": "$1"
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`ENTITY`8c124acf-e2b9-4652-a301-e82af5e67bb1`START ", 
+                "flags": "i", 
+                "replacement": ""
+            }
+        }
+    ], 
+    "asrEngine": {
+        "version": "0.1.0"
+    }, 
+    "entitiesFstMap": [
+        [
+            59, 
+            "__root__"
+        ], 
+        [
+            60, 
+            "e_0.snips"
+        ]
+    ], 
+    "entityNameToDisambigs": {
+        "visitor": {
+            "start": "`ENTITY`8c124acf-e2b9-4652-a301-e82af5e67bb1`START", 
+            "end": "`ENTITY`8c124acf-e2b9-4652-a301-e82af5e67bb1`END", 
+            "empty": [
+                "", 
+                2
+            ]
+        }
+    }, 
+    "inferenceEngine": {
+        "version": 2
+    }
+}

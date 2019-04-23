@@ -1,0 +1,57 @@
+{
+  "id" : "proj_E6gNnyWBnM9",
+  "name" : "doorbell-FR",
+  "intents" : [ {
+    "id" : "rmesnard:sayyes",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "sayyes",
+    "enabledByDefault" : true
+  }, {
+    "id" : "rmesnard:sayno",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "sayno",
+    "enabledByDefault" : true
+  }, {
+    "id" : "rmesnard:servicename",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ {
+      "name" : "service",
+      "id" : "x0k7RXK3a",
+      "entityId" : "entity_PAeayemv4Yy",
+      "missingQuestion" : "",
+      "required" : false
+    } ],
+    "name" : "servicename",
+    "enabledByDefault" : true
+  }, {
+    "id" : "rmesnard:getmessage",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "getmessage",
+    "enabledByDefault" : true
+  } ],
+  "createdAt" : "2019-01-25T18:03:51.520Z",
+  "language" : "fr",
+  "version" : {
+    "nluModel" : "0.19.0"
+  },
+  "platform" : {
+    "type" : "raspberrypi"
+  },
+  "asr" : {
+    "type" : "snips"
+  },
+  "analyticsEnabled" : true,
+  "heartbeatEnabled" : true,
+  "hotword" : "hey_snips"
+}

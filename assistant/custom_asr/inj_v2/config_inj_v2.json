@@ -1,15 +1,8 @@
 {
-    "snips/default--answer": {
-        "vanilla": "a58fbdba-2856-43d2-9cb7-d9a0485c28dc.vanilla", 
-        "ngram": true, 
-        "added": "a58fbdba-2856-43d2-9cb7-d9a0485c28dc.added", 
-        "pruningThresholds": [], 
-        "order": 3
-    }, 
     "visitor": {
-        "vanilla": "6b3a55e3-8307-4637-a14e-8ceccb58596f.vanilla", 
+        "vanilla": "fb949fbb-d488-4722-aad4-abaa7f7908c0.vanilla", 
         "ngram": true, 
-        "added": "6b3a55e3-8307-4637-a14e-8ceccb58596f.added", 
+        "added": "fb949fbb-d488-4722-aad4-abaa7f7908c0.added", 
         "pruningThresholds": [], 
         "order": 3
     }

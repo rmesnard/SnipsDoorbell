@@ -14,7 +14,7 @@
       {
         "args": {
           "common_words_gazetteer_name": "top_10000_words_stemmed",
-          "language_code": "fr",
+          "language_code": "en",
           "n": 1,
           "use_stemming": true
         },
@@ -30,7 +30,7 @@
       {
         "args": {
           "common_words_gazetteer_name": "top_10000_words_stemmed",
-          "language_code": "fr",
+          "language_code": "en",
           "n": 2,
           "use_stemming": true
         },
@@ -94,7 +94,7 @@
             "snips/percentage",
             "snips/temperature"
           ],
-          "language_code": "fr",
+          "language_code": "en",
           "tagging_scheme_code": 1
         },
         "factory_name": "builtin_entity_match",
@@ -103,15 +103,28 @@
           -1,
           0
         ]
+      },
+      {
+        "args": {
+          "cluster_name": "brown_clusters",
+          "use_stemming": false
+        },
+        "factory_name": "word_cluster",
+        "offsets": [
+          -2,
+          -1,
+          0,
+          1
+        ]
       }
     ],
     "random_seed": null,
     "tagging_scheme": 1,
     "unit_name": "crf_slot_filler"
   },
-  "crf_model_file": "modelzddRme.crfsuite",
+  "crf_model_file": "modelnFrFti.crfsuite",
   "intent": "rmesnard:servicename",
-  "language_code": "fr",
+  "language_code": "en",
   "slot_name_mapping": {
     "service": "visitor"
   }

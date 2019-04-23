@@ -8,7 +8,7 @@
   "group_names_to_slot_names": {
     "group0": "service"
   },
-  "language_code": "fr",
+  "language_code": "en",
   "patterns": {
     "rmesnard:getmessage": [
       "^\\s*message\\s*$",
@@ -25,11 +25,9 @@
       "^\\s*yes\\s*$"
     ],
     "rmesnard:servicename": [
-      "^\\s*hi\\s*(?P<group0>%VISITOR%)\\s*here\\s*$",
       "^\\s*(?P<group0>%VISITOR%)\\s*here\\s*$",
-      "^\\s*hello\\s*(?P<group0>%VISITOR%)\\s*$",
       "^\\s*(?P<group0>%VISITOR%)\\s*$",
-      "^\\s*this\\s*is\\s*(?P<group0>%VISITOR%)\\s*service\\s*$"
+      "^\\s*is\\s*(?P<group0>%VISITOR%)\\s*service\\s*$"
     ]
   },
   "slot_names_to_entities": {

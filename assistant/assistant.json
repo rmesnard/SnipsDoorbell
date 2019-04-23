@@ -1,53 +1,47 @@
 {
-  "id" : "proj_E6gNnyWBnM9",
-  "name" : "doorbell",
+  "id" : "proj_724ak7OmPMK",
+  "name" : "doorbell-EN",
   "intents" : [ {
     "id" : "rmesnard:sayyes",
     "type" : "registry",
-    "version" : "0.7.0",
-    "language" : "fr",
+    "version" : "0.2.0",
+    "language" : "en",
     "slots" : [ ],
     "name" : "sayyes",
-    "enabledByDefault" : false
-  }, {
-    "id" : "rmesnard:sayno",
-    "type" : "registry",
-    "version" : "0.2.0",
-    "language" : "fr",
-    "slots" : [ ],
-    "name" : "sayno",
-    "enabledByDefault" : false
+    "enabledByDefault" : true
   }, {
     "id" : "rmesnard:servicename",
     "type" : "registry",
     "version" : "0.2.0",
-    "language" : "fr",
+    "language" : "en",
     "slots" : [ {
       "name" : "service",
-      "id" : "x0k7RXK3a",
-      "entityId" : "entity_PAeayemv4Yy",
+      "id" : "slot_imported_FSiOAXno0",
+      "entityId" : "entity_2m8D69Xovkz",
       "missingQuestion" : "",
       "required" : false
     } ],
     "name" : "servicename",
     "enabledByDefault" : true
   }, {
+    "id" : "rmesnard:sayno",
+    "type" : "registry",
+    "version" : "0.2.0",
+    "language" : "en",
+    "slots" : [ ],
+    "name" : "sayno",
+    "enabledByDefault" : true
+  }, {
     "id" : "rmesnard:getmessage",
     "type" : "registry",
-    "version" : "0.1.0",
-    "language" : "fr",
-    "slots" : [ {
-      "name" : "answer",
-      "id" : "BDP35QBAp",
-      "entityId" : "snips/default",
-      "missingQuestion" : "",
-      "required" : false
-    } ],
+    "version" : "0.3.0",
+    "language" : "en",
+    "slots" : [ ],
     "name" : "getmessage",
     "enabledByDefault" : true
   } ],
-  "createdAt" : "2019-01-25T18:03:51.520Z",
-  "language" : "fr",
+  "createdAt" : "2019-04-23T11:56:05.073Z",
+  "language" : "en",
   "version" : {
     "nluModel" : "0.19.0"
   },
