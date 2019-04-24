@@ -2,10 +2,10 @@
 bus = "mqtt"
 mqtt = "192.168.2.101:1883"
 site_id = "snipsdoorbell"
-audio = ["snipsdoorbell@mqtt"]
+audio = ["snipsdoorbell@mqtt" , "snipshome@mqtt"]
 assistant = "/usr/share/snips/assistant"
 user_dir = "/usr/share/snips"
-locale = "fr-FR"
+locale = "en-US"
 ## MQTT authentication
 # mqtt_username = ""
 # mqtt_password = ""
@@ -18,24 +18,13 @@ locale = "fr-FR"
 # mqtt_tls_client_cert = ""
 # mqtt_tls_client_key = ""
 
-# doorbell GPIO
-
-[snips-doorbell]
-relay_gpio_bcm = 12
-pir_gpio_bcm = 11
-temperature_unit = "celsius"
-button_gpio_bcm = 17
-
-[snips-homeassistant]
-
-
 [snips-analytics]
 
 [snips-asr]
 # no_fst_map = true
 # beam_size = 8
 # model = "/usr/share/snips/asr"
-# audio = ["+@mqtt"]
+audio = ["snipsdoorbell@mqtt" , "snipshome@mqtt"]
 
 [snips-asr-google]
 # credentials = "/usr/share/snips/googlecredentials.json"
@@ -51,8 +40,8 @@ mike = "rpi"
 # resources = "/usr/share/snips/dialogue"
 # session_timeout = 15
 # lambda_timeout = 5
-# retry_count = 3
-# sound_feedback_disabled_default = false
+retry_count = 1
+sound_feedback_disabled_default = true
 
 [snips-hotword]
 # model = "/usr/share/snips/hotword"
@@ -81,10 +70,46 @@ provider = "picotts"
 [snips-audio-player]
 audio_out = "rpi"
 bitrate = 16000
-periodsize = 800
+periodsize = 1600
 channels = 1
 bandwith = 200000
 # Debug 0 or 1
 debug = 0
 record_path = "/usr/share/snips/records"
+
+
+# doorbell config
+
+[snips-doorbell]
+button_gpio_bcm = 17
+
+#how many try to call user at home
+retry_ask_home = 3
+#how many time to wait user at home
+timer_ask_home = 60
+#max record time
+timer_record = 40
+
+mqtt_homestation = "snipshome"
+mqtt_topic_presence = "home/presence"
+mqtt_payload_presence = "Yes"
+mqtt_topic_message = "home/message"
+
+
+say_welcome_present = "Hello, wait a minute i am calling mister Doe."
+say_welcome_nopresent = "Hello, i am out for the moment. Do you want to leave a message"
+say_no_reply = "No answser. Do you want to leave a message ?"
+say_wait_more = "Wait a minute.  instant sil vous plait. He will answer you."
+say_start_message = "listening"
+say_thanks = "Thanks, I will tell him."
+say_goobye = "Bye"
+
+say_incomming = "Someone is ringing at the door"
+say_incomming_service = " ringing at the door"
+say_somebodywait = "Someone is waiting at the door"
+
+say_no_message = "No messages"
+say_xxx_messages = "There are XXX messages."
+say_message_xxx = "Message XXX"
+
 

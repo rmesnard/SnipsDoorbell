@@ -2,7 +2,7 @@
 bus = "mqtt"
 mqtt = "192.168.2.101:1883"
 site_id = "snipsdoorbell"
-audio = ["snipsdoorbell@mqtt"]
+audio = ["snipsdoorbell@mqtt" , "snipshome@mqtt"]
 assistant = "/usr/share/snips/assistant"
 user_dir = "/usr/share/snips"
 locale = "fr-FR"
@@ -24,7 +24,7 @@ locale = "fr-FR"
 # no_fst_map = true
 # beam_size = 8
 # model = "/usr/share/snips/asr"
-# audio = ["+@mqtt"]
+audio = ["snipsdoorbell@mqtt" , "snipshome@mqtt"]
 
 [snips-asr-google]
 # credentials = "/usr/share/snips/googlecredentials.json"
@@ -47,7 +47,7 @@ sound_feedback_disabled_default = true
 # model = "/usr/share/snips/hotword"
 # hotword_id = "default"
 # sensitivity = "0.5"
-audio = ["snipsdoorbell@mqtt"]
+audio = ["snipshome@mqtt"]
 
 [snips-injection]
 #asr_model = "/usr/share/snips/asr"
@@ -86,22 +86,31 @@ button_gpio_bcm = 17
 #how many try to call user at home
 retry_ask_home = 3
 #how many time to wait user at home
-timer_ask_home = 40
+timer_ask_home = 60
 #max record time
-timer_record = 60
+timer_record = 30
 
 mqtt_homestation = "snipshome"
 mqtt_topic_presence = "home/presence"
 mqtt_payload_presence = "Yes"
+mqtt_topic_message = "home/message"
+
 
 say_welcome_present = "Bonjours, Un instant, j'appel monsieur dupon."
 say_welcome_nopresent = "Bonjours, Je suis absent. Voulez vous laisser un message ?"
 say_no_reply = "Il ne répond pas. Voulez vous laisser un message ?"
-say_wait_more = "Un instant sil vous plait il va vous répondre."
+say_wait_more = "Un instant sil vous plait. Il va vous répondre."
 say_start_message = "j'écoute"
 say_thanks = "Merci, je lui transmet."
 say_goobye = "Aurevoir"
 
 say_incomming = "Quelqu'un sonne a la porte"
 say_incomming_service = " sonne a la porte"
+say_somebodywait = "Quelqu'un attend a la porte"
+
+say_no_message = "Il n'y a pas de messages"
+say_xxx_messages = "Il y a XXX messages."
+say_message_xxx = "Message XXX"
+
+
 
