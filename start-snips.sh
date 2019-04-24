@@ -104,13 +104,6 @@ snips_audio_server_pid=$!
 
 echo "snips services started.. check logs"
 
-if [ $ENABLE_INTERCOM == yes ]; then
-	echo "Start intercom"
-	cd /usr/share/snips/skills
-	nohup python3 -u listener.py 2> /var/log/listener.log &
-	snips_listener_pid=$!
-fi
-
 #start doorbel skill
 cd /usr/share/snips/skills
 nohup python3 -u doorbell.py 2> /var/log/doorbell.log &
