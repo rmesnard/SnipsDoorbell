@@ -10,6 +10,19 @@
   },
   "language_code": "fr",
   "patterns": {
+    "rmesnard:asktowait": [
+      "^\\s*deux\\s*secondes\\s*$",
+      "^\\s*attends\\s*instant\\s*$",
+      "^\\s*seconde\\s*$",
+      "^\\s*minute\\s*$",
+      "^\\s*attendez\\s*$",
+      "^\\s*attends\\s*$",
+      "^\\s*instant\\s*$",
+      "^\\s*instant\\s*il\\s*plait\\s*$",
+      "^\\s*met\\s*en\\s*attente\\s*$",
+      "^\\s*fait\\s*attendre\\s*$",
+      "^\\s*veuillez\\s*attendre\\s*$"
+    ],
     "rmesnard:getmessage": [
       "^\\s*laisse\\s*message\\s*$",
       "^\\s*message\\s*$",
@@ -19,15 +32,27 @@
       "^\\s*je\\s*vais\\s*laisser\\s*message\\s*$",
       "^\\s*laisser\\s*message\\s*$"
     ],
+    "rmesnard:reply": [
+      "^\\s*r\u00e9ponse\\s*$",
+      "^\\s*r\u00e9pond\\s*$",
+      "^\\s*ouvre\\s*connection\\s*$",
+      "^\\s*connection\\s*$",
+      "^\\s*connecte\\s*$",
+      "^\\s*connecter\\s*$",
+      "^\\s*r\u00e9pondre\\s*$"
+    ],
     "rmesnard:sayno": [
-      "^\\s*annuler\\s*$",
+      "^\\s*pas\\s*besoin\\s*$",
+      "^\\s*non\\s*pas\\s*peine\\s*$",
       "^\\s*non\\s*$",
+      "^\\s*annuler\\s*$",
       "^\\s*n\u00e9gatif\\s*$"
     ],
     "rmesnard:sayyes": [
+      "^\\s*oui\\s*il\\s*plait\\s*$",
+      "^\\s*oui\\s*$",
       "^\\s*affirmatif\\s*$",
-      "^\\s*yep\\s*$",
-      "^\\s*oui\\s*$"
+      "^\\s*yep\\s*$"
     ],
     "rmesnard:servicename": [
       "^\\s*est\\s*livreur\\s*(?P<group0>%VISITOR%)\\s*$",
@@ -36,7 +61,9 @@
     ]
   },
   "slot_names_to_entities": {
+    "rmesnard:asktowait": {},
     "rmesnard:getmessage": {},
+    "rmesnard:reply": {},
     "rmesnard:sayno": {},
     "rmesnard:sayyes": {},
     "rmesnard:servicename": {

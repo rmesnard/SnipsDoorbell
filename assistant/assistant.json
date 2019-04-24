@@ -4,7 +4,7 @@
   "intents" : [ {
     "id" : "rmesnard:sayyes",
     "type" : "registry",
-    "version" : "0.2.0",
+    "version" : "2.0.0",
     "language" : "en",
     "slots" : [ ],
     "name" : "sayyes",
@@ -12,7 +12,7 @@
   }, {
     "id" : "rmesnard:servicename",
     "type" : "registry",
-    "version" : "0.2.0",
+    "version" : "1.0.0",
     "language" : "en",
     "slots" : [ {
       "name" : "service",
@@ -24,17 +24,33 @@
     "name" : "servicename",
     "enabledByDefault" : true
   }, {
+    "id" : "rmesnard:reply",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "en",
+    "slots" : [ ],
+    "name" : "reply",
+    "enabledByDefault" : true
+  }, {
     "id" : "rmesnard:sayno",
     "type" : "registry",
-    "version" : "0.2.0",
+    "version" : "2.0.0",
     "language" : "en",
     "slots" : [ ],
     "name" : "sayno",
     "enabledByDefault" : true
   }, {
+    "id" : "rmesnard:asktowait",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "en",
+    "slots" : [ ],
+    "name" : "asktowait",
+    "enabledByDefault" : true
+  }, {
     "id" : "rmesnard:getmessage",
     "type" : "registry",
-    "version" : "0.3.0",
+    "version" : "2.0.0",
     "language" : "en",
     "slots" : [ ],
     "name" : "getmessage",

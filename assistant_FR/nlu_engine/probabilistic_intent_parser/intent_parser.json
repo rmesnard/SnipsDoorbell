@@ -128,20 +128,28 @@
   },
   "slot_fillers": [
     {
-      "intent": "rmesnard:getmessage",
+      "intent": "rmesnard:asktowait",
       "slot_filler_name": "slot_filler_0"
     },
     {
-      "intent": "rmesnard:sayno",
+      "intent": "rmesnard:getmessage",
       "slot_filler_name": "slot_filler_1"
     },
     {
-      "intent": "rmesnard:sayyes",
+      "intent": "rmesnard:reply",
       "slot_filler_name": "slot_filler_2"
     },
     {
-      "intent": "rmesnard:servicename",
+      "intent": "rmesnard:sayno",
       "slot_filler_name": "slot_filler_3"
+    },
+    {
+      "intent": "rmesnard:sayyes",
+      "slot_filler_name": "slot_filler_4"
+    },
+    {
+      "intent": "rmesnard:servicename",
+      "slot_filler_name": "slot_filler_5"
     }
   ]
 }

@@ -160,7 +160,9 @@
     },
     "language_code": "en",
     "slot_name_mappings": {
+      "rmesnard:asktowait": {},
       "rmesnard:getmessage": {},
+      "rmesnard:reply": {},
       "rmesnard:sayno": {},
       "rmesnard:sayyes": {},
       "rmesnard:servicename": {

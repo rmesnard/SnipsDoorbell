@@ -4,15 +4,23 @@
   "intents" : [ {
     "id" : "rmesnard:sayyes",
     "type" : "registry",
-    "version" : "1.0.0",
+    "version" : "2.0.0",
     "language" : "fr",
     "slots" : [ ],
     "name" : "sayyes",
     "enabledByDefault" : true
   }, {
-    "id" : "rmesnard:sayno",
+    "id" : "rmesnard:reply",
     "type" : "registry",
     "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "reply",
+    "enabledByDefault" : true
+  }, {
+    "id" : "rmesnard:sayno",
+    "type" : "registry",
+    "version" : "2.0.0",
     "language" : "fr",
     "slots" : [ ],
     "name" : "sayno",
@@ -38,6 +46,14 @@
     "language" : "fr",
     "slots" : [ ],
     "name" : "getmessage",
+    "enabledByDefault" : true
+  }, {
+    "id" : "rmesnard:asktowait",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "asktowait",
     "enabledByDefault" : true
   } ],
   "createdAt" : "2019-01-25T18:03:51.520Z",

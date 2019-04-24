@@ -10,16 +10,33 @@
   },
   "language_code": "en",
   "patterns": {
+    "rmesnard:asktowait": [
+      "^\\s*one\\s*minute\\s*$",
+      "^\\s*wait\\s*$",
+      "^\\s*hold\\s*on\\s*$",
+      "^\\s*one\\s*moment\\s*$"
+    ],
     "rmesnard:getmessage": [
+      "^\\s*get\\s*message\\s*$",
       "^\\s*message\\s*$",
       "^\\s*left\\s*message\\s*$"
     ],
+    "rmesnard:reply": [
+      "^\\s*connection\\s*$",
+      "^\\s*connect\\s*$",
+      "^\\s*open\\s*connection\\s*$",
+      "^\\s*reply\\s*$"
+    ],
     "rmesnard:sayno": [
+      "^\\s*not\\s*today\\s*$",
+      "^\\s*oh\\s*no\\s*$",
+      "^\\s*no\\s*thanks\\s*$",
       "^\\s*cancel\\s*$",
       "^\\s*negative\\s*$",
       "^\\s*no\\s*$"
     ],
     "rmesnard:sayyes": [
+      "^\\s*yes\\s*thanks\\s*$",
       "^\\s*affirmative\\s*$",
       "^\\s*yep\\s*$",
       "^\\s*yes\\s*$"
@@ -31,7 +48,9 @@
     ]
   },
   "slot_names_to_entities": {
+    "rmesnard:asktowait": {},
     "rmesnard:getmessage": {},
+    "rmesnard:reply": {},
     "rmesnard:sayno": {},
     "rmesnard:sayyes": {},
     "rmesnard:servicename": {
