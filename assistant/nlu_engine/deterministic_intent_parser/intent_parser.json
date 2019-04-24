@@ -16,6 +16,15 @@
       "^\\s*hold\\s*on\\s*$",
       "^\\s*one\\s*moment\\s*$"
     ],
+    "rmesnard:endconnection": [
+      "^\\s*close\\s*intercom\\s*$",
+      "^\\s*stop\\s*communication\\s*$",
+      "^\\s*end\\s*of\\s*dialog\\s*$",
+      "^\\s*close\\s*dialog\\s*$",
+      "^\\s*close\\s*connection\\s*$",
+      "^\\s*cut\\s*connection\\s*$",
+      "^\\s*end\\s*of\\s*communication\\s*$"
+    ],
     "rmesnard:getmessage": [
       "^\\s*get\\s*message\\s*$",
       "^\\s*message\\s*$",
@@ -57,6 +66,7 @@
   },
   "slot_names_to_entities": {
     "rmesnard:asktowait": {},
+    "rmesnard:endconnection": {},
     "rmesnard:getmessage": {},
     "rmesnard:readmessage": {},
     "rmesnard:reply": {},

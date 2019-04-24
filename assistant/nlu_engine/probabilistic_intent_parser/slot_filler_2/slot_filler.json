@@ -108,7 +108,7 @@
     "unit_name": "crf_slot_filler"
   },
   "crf_model_file": null,
-  "intent": "rmesnard:readmessage",
+  "intent": "rmesnard:getmessage",
   "language_code": "en",
   "slot_name_mapping": {}
 }

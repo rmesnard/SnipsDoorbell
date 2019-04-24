@@ -24,6 +24,14 @@
     "name" : "servicename",
     "enabledByDefault" : true
   }, {
+    "id" : "rmesnard:endconnection",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "en",
+    "slots" : [ ],
+    "name" : "endconnection",
+    "enabledByDefault" : true
+  }, {
     "id" : "rmesnard:reply",
     "type" : "registry",
     "version" : "1.0.0",
@@ -34,7 +42,7 @@
   }, {
     "id" : "rmesnard:readmessage",
     "type" : "registry",
-    "version" : "0.2.0",
+    "version" : "1.0.0",
     "language" : "en",
     "slots" : [ ],
     "name" : "readmessage",

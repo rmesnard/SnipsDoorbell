@@ -23,6 +23,21 @@
       "^\\s*fait\\s*attendre\\s*$",
       "^\\s*veuillez\\s*attendre\\s*$"
     ],
+    "rmesnard:endconnection": [
+      "^\\s*arret\\s*dialogue\\s*$",
+      "^\\s*fin\\s*dicution\\s*$",
+      "^\\s*fin\\s*communication\\s*$",
+      "^\\s*arret\\s*communication\\s*$",
+      "^\\s*arret\\s*connection\\s*$",
+      "^\\s*arret\\s*interphone\\s*$",
+      "^\\s*coupe\\s*interphone\\s*$",
+      "^\\s*fin\\s*discution\\s*$",
+      "^\\s*termine\\s*communication\\s*$",
+      "^\\s*stop\\s*communication\\s*$",
+      "^\\s*stop\\s*connection\\s*$",
+      "^\\s*coupe\\s*connection\\s*$",
+      "^\\s*fin\\s*connection\\s*$"
+    ],
     "rmesnard:getmessage": [
       "^\\s*laisse\\s*message\\s*$",
       "^\\s*message\\s*$",
@@ -33,7 +48,8 @@
       "^\\s*laisser\\s*message\\s*$"
     ],
     "rmesnard:readmessage": [
-      "^\\s*ecoute\\s*messagerie\\s*$",
+      "^\\s*combien\\s*t\\s*il\\s*messages\\s*$",
+      "^\\s*\u00e9coute\\s*messagerie\\s*$",
       "^\\s*\u00e9couter\\s*messagerie\\s*$",
       "^\\s*\u00e9couter\\s*message\\s*$",
       "^\\s*lit\\s*messages\\s*$",
@@ -77,6 +93,7 @@
   },
   "slot_names_to_entities": {
     "rmesnard:asktowait": {},
+    "rmesnard:endconnection": {},
     "rmesnard:getmessage": {},
     "rmesnard:readmessage": {},
     "rmesnard:reply": {},

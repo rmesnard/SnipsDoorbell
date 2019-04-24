@@ -4,36 +4,40 @@
     }, 
     "intentNameToDisambigs": {
         "rmesnard:servicename": {
-            "start": "`INTENT`f54226f4-0656-465d-b9b4-aaf9c2301ff1`START", 
-            "end": "`INTENT`f54226f4-0656-465d-b9b4-aaf9c2301ff1`END"
+            "start": "`INTENT`49099640-c091-4442-8af1-00db4c0f5b15`START", 
+            "end": "`INTENT`49099640-c091-4442-8af1-00db4c0f5b15`END"
         }, 
         "rmesnard:asktowait": {
-            "start": "`INTENT`d037e15a-e312-4639-8ff9-c5744329eb4d`START", 
-            "end": "`INTENT`d037e15a-e312-4639-8ff9-c5744329eb4d`END"
+            "start": "`INTENT`8d58af05-b050-4618-818c-ff7e382a0636`START", 
+            "end": "`INTENT`8d58af05-b050-4618-818c-ff7e382a0636`END"
         }, 
         "rmesnard:reply": {
-            "start": "`INTENT`48fe55e9-cce5-446d-90d7-3431b0043a11`START", 
-            "end": "`INTENT`48fe55e9-cce5-446d-90d7-3431b0043a11`END"
+            "start": "`INTENT`044dd5b3-83af-492c-be63-f4bb337e9917`START", 
+            "end": "`INTENT`044dd5b3-83af-492c-be63-f4bb337e9917`END"
         }, 
         "rmesnard:readmessage": {
-            "start": "`INTENT`6cf112da-d86d-4089-bdce-68a34787568d`START", 
-            "end": "`INTENT`6cf112da-d86d-4089-bdce-68a34787568d`END"
+            "start": "`INTENT`049e3504-1517-4dc0-8d24-bd279b6455d7`START", 
+            "end": "`INTENT`049e3504-1517-4dc0-8d24-bd279b6455d7`END"
         }, 
         "rmesnard:sayno": {
-            "start": "`INTENT`618952a7-be02-459b-b469-50b922ce0ebd`START", 
-            "end": "`INTENT`618952a7-be02-459b-b469-50b922ce0ebd`END"
+            "start": "`INTENT`00b8a3b0-76d3-408c-b52e-1afca503f7e0`START", 
+            "end": "`INTENT`00b8a3b0-76d3-408c-b52e-1afca503f7e0`END"
         }, 
         "rmesnard:sayyes": {
-            "start": "`INTENT`0e658322-f0e5-4742-8364-809fea115367`START", 
-            "end": "`INTENT`0e658322-f0e5-4742-8364-809fea115367`END"
-        }, 
-        "27e24a9a-3b00-4712-bc16-dcf7a5212ffe": {
-            "start": "`INTENT`27e24a9a-3b00-4712-bc16-dcf7a5212ffe`START", 
-            "end": "`INTENT`27e24a9a-3b00-4712-bc16-dcf7a5212ffe`END"
+            "start": "`INTENT`ff40cf06-d749-4b66-84b0-69cdf820f8e6`START", 
+            "end": "`INTENT`ff40cf06-d749-4b66-84b0-69cdf820f8e6`END"
         }, 
         "rmesnard:getmessage": {
-            "start": "`INTENT`c119beed-5e36-4f50-8bc4-a33fc61e68b0`START", 
-            "end": "`INTENT`c119beed-5e36-4f50-8bc4-a33fc61e68b0`END"
+            "start": "`INTENT`1f7f4d43-84b1-4be3-bc54-4d2c6782f27d`START", 
+            "end": "`INTENT`1f7f4d43-84b1-4be3-bc54-4d2c6782f27d`END"
+        }, 
+        "rmesnard:endconnection": {
+            "start": "`INTENT`8c057ce6-1ba7-45bc-82a1-bdc666e5e746`START", 
+            "end": "`INTENT`8c057ce6-1ba7-45bc-82a1-bdc666e5e746`END"
+        }, 
+        "3447cc02-574a-4e2c-86ba-fea925fb2912": {
+            "start": "`INTENT`3447cc02-574a-4e2c-86ba-fea925fb2912`START", 
+            "end": "`INTENT`3447cc02-574a-4e2c-86ba-fea925fb2912`END"
         }
     }, 
     "injectionsEngine": {
@@ -95,126 +99,140 @@
     "postprocessors": [
         {
             "Regex": {
-                "pattern": "`INTENT`f54226f4-0656-465d-b9b4-aaf9c2301ff1`START (.*?) `INTENT`f54226f4-0656-465d-b9b4-aaf9c2301ff1`END", 
+                "pattern": "`INTENT`49099640-c091-4442-8af1-00db4c0f5b15`START (.*?) `INTENT`49099640-c091-4442-8af1-00db4c0f5b15`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`f54226f4-0656-465d-b9b4-aaf9c2301ff1`START ", 
+                "pattern": "`INTENT`49099640-c091-4442-8af1-00db4c0f5b15`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`d037e15a-e312-4639-8ff9-c5744329eb4d`START (.*?) `INTENT`d037e15a-e312-4639-8ff9-c5744329eb4d`END", 
+                "pattern": "`INTENT`8d58af05-b050-4618-818c-ff7e382a0636`START (.*?) `INTENT`8d58af05-b050-4618-818c-ff7e382a0636`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`d037e15a-e312-4639-8ff9-c5744329eb4d`START ", 
+                "pattern": "`INTENT`8d58af05-b050-4618-818c-ff7e382a0636`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`48fe55e9-cce5-446d-90d7-3431b0043a11`START (.*?) `INTENT`48fe55e9-cce5-446d-90d7-3431b0043a11`END", 
+                "pattern": "`INTENT`044dd5b3-83af-492c-be63-f4bb337e9917`START (.*?) `INTENT`044dd5b3-83af-492c-be63-f4bb337e9917`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`48fe55e9-cce5-446d-90d7-3431b0043a11`START ", 
+                "pattern": "`INTENT`044dd5b3-83af-492c-be63-f4bb337e9917`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`6cf112da-d86d-4089-bdce-68a34787568d`START (.*?) `INTENT`6cf112da-d86d-4089-bdce-68a34787568d`END", 
+                "pattern": "`INTENT`049e3504-1517-4dc0-8d24-bd279b6455d7`START (.*?) `INTENT`049e3504-1517-4dc0-8d24-bd279b6455d7`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`6cf112da-d86d-4089-bdce-68a34787568d`START ", 
+                "pattern": "`INTENT`049e3504-1517-4dc0-8d24-bd279b6455d7`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`618952a7-be02-459b-b469-50b922ce0ebd`START (.*?) `INTENT`618952a7-be02-459b-b469-50b922ce0ebd`END", 
+                "pattern": "`INTENT`00b8a3b0-76d3-408c-b52e-1afca503f7e0`START (.*?) `INTENT`00b8a3b0-76d3-408c-b52e-1afca503f7e0`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`618952a7-be02-459b-b469-50b922ce0ebd`START ", 
+                "pattern": "`INTENT`00b8a3b0-76d3-408c-b52e-1afca503f7e0`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`0e658322-f0e5-4742-8364-809fea115367`START (.*?) `INTENT`0e658322-f0e5-4742-8364-809fea115367`END", 
+                "pattern": "`INTENT`ff40cf06-d749-4b66-84b0-69cdf820f8e6`START (.*?) `INTENT`ff40cf06-d749-4b66-84b0-69cdf820f8e6`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`0e658322-f0e5-4742-8364-809fea115367`START ", 
+                "pattern": "`INTENT`ff40cf06-d749-4b66-84b0-69cdf820f8e6`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`27e24a9a-3b00-4712-bc16-dcf7a5212ffe`START (.*?) `INTENT`27e24a9a-3b00-4712-bc16-dcf7a5212ffe`END", 
+                "pattern": "`INTENT`1f7f4d43-84b1-4be3-bc54-4d2c6782f27d`START (.*?) `INTENT`1f7f4d43-84b1-4be3-bc54-4d2c6782f27d`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`27e24a9a-3b00-4712-bc16-dcf7a5212ffe`START ", 
+                "pattern": "`INTENT`1f7f4d43-84b1-4be3-bc54-4d2c6782f27d`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`c119beed-5e36-4f50-8bc4-a33fc61e68b0`START (.*?) `INTENT`c119beed-5e36-4f50-8bc4-a33fc61e68b0`END", 
+                "pattern": "`INTENT`8c057ce6-1ba7-45bc-82a1-bdc666e5e746`START (.*?) `INTENT`8c057ce6-1ba7-45bc-82a1-bdc666e5e746`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`INTENT`c119beed-5e36-4f50-8bc4-a33fc61e68b0`START ", 
+                "pattern": "`INTENT`8c057ce6-1ba7-45bc-82a1-bdc666e5e746`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
         }, 
         {
             "Regex": {
-                "pattern": "`ENTITY`02733ac8-8ce7-4359-9857-93e14ce67662`START (.*?) `ENTITY`02733ac8-8ce7-4359-9857-93e14ce67662`END", 
+                "pattern": "`INTENT`3447cc02-574a-4e2c-86ba-fea925fb2912`START (.*?) `INTENT`3447cc02-574a-4e2c-86ba-fea925fb2912`END", 
                 "flags": "i", 
                 "replacement": "$1"
             }
         }, 
         {
             "Regex": {
-                "pattern": "`ENTITY`02733ac8-8ce7-4359-9857-93e14ce67662`START ", 
+                "pattern": "`INTENT`3447cc02-574a-4e2c-86ba-fea925fb2912`START ", 
+                "flags": "i", 
+                "replacement": ""
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`ENTITY`c6c0e28f-3cd9-4ac6-bc4d-ac4a2ff244a1`START (.*?) `ENTITY`c6c0e28f-3cd9-4ac6-bc4d-ac4a2ff244a1`END", 
+                "flags": "i", 
+                "replacement": "$1"
+            }
+        }, 
+        {
+            "Regex": {
+                "pattern": "`ENTITY`c6c0e28f-3cd9-4ac6-bc4d-ac4a2ff244a1`START ", 
                 "flags": "i", 
                 "replacement": ""
             }
@@ -225,18 +243,18 @@
     }, 
     "entitiesFstMap": [
         [
-            113, 
+            127, 
             "__root__"
         ], 
         [
-            115, 
+            129, 
             "e_0.snips"
         ]
     ], 
     "entityNameToDisambigs": {
         "visitor": {
-            "start": "`ENTITY`02733ac8-8ce7-4359-9857-93e14ce67662`START", 
-            "end": "`ENTITY`02733ac8-8ce7-4359-9857-93e14ce67662`END", 
+            "start": "`ENTITY`c6c0e28f-3cd9-4ac6-bc4d-ac4a2ff244a1`START", 
+            "end": "`ENTITY`c6c0e28f-3cd9-4ac6-bc4d-ac4a2ff244a1`END", 
             "empty": [
                 "", 
                 2

@@ -161,6 +161,7 @@
     "language_code": "en",
     "slot_name_mappings": {
       "rmesnard:asktowait": {},
+      "rmesnard:endconnection": {},
       "rmesnard:getmessage": {},
       "rmesnard:readmessage": {},
       "rmesnard:reply": {},

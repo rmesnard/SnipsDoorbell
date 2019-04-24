@@ -50,10 +50,18 @@
   }, {
     "id" : "rmesnard:readmessage",
     "type" : "registry",
-    "version" : "0.2.0",
+    "version" : "1.0.0",
     "language" : "fr",
     "slots" : [ ],
     "name" : "readmessage",
+    "enabledByDefault" : true
+  }, {
+    "id" : "rmesnard:endconnection",
+    "type" : "registry",
+    "version" : "1.0.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "endconnection",
     "enabledByDefault" : true
   }, {
     "id" : "rmesnard:asktowait",
