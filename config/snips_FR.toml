@@ -81,17 +81,23 @@ record_path = "/usr/share/snips/records"
 # doorbell config
 
 [snips-doorbell]
-relay_gpio_bcm = 12
-pir_gpio_bcm = 11
-temperature_unit = "celsius"
 button_gpio_bcm = 17
 
+#how many try to call user at home
+retry_ask_home = 3
+#how many time to wait user at home
+timer_ask_home = 40
+#max record time
+timer_record = 60
+
+mqtt_homestation = "snipshome"
 mqtt_topic_presence = "home/presence"
 mqtt_payload_presence = "Yes"
 
 say_welcome_present = "Bonjours, Un instant, j'appel monsieur dupon."
 say_welcome_nopresent = "Bonjours, Je suis absent. Voulez vous laisser un message ?"
 say_no_reply = "Il ne répond pas. Voulez vous laisser un message ?"
+say_wait_more = "Un instant sil vous plait il va vous répondre."
 say_start_message = "j'écoute"
 say_thanks = "Merci, je lui transmet."
 say_goobye = "Aurevoir"
