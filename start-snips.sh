@@ -118,5 +118,5 @@ snips_doorbell_pid=$!
 
 echo "running ok"
 
-wait "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_skill_server_pid" "$snips_audio_server_pid"
+wait "$snips_analytics_pid" "$snips_asr_pid" "$snips_dialogue_pid" "$snips_hotword_pid" "$snips_nlu_pid" "$snips_tts_pid" "$snips_audio_server_pid"
 
