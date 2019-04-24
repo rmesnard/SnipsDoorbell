@@ -48,6 +48,14 @@
     "name" : "getmessage",
     "enabledByDefault" : true
   }, {
+    "id" : "rmesnard:readmessage",
+    "type" : "registry",
+    "version" : "0.2.0",
+    "language" : "fr",
+    "slots" : [ ],
+    "name" : "readmessage",
+    "enabledByDefault" : true
+  }, {
     "id" : "rmesnard:asktowait",
     "type" : "registry",
     "version" : "1.0.0",

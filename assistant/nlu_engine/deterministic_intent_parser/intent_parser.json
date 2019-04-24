@@ -21,6 +21,14 @@
       "^\\s*message\\s*$",
       "^\\s*left\\s*message\\s*$"
     ],
+    "rmesnard:readmessage": [
+      "^\\s*listen\\s*all\\s*message\\s*$",
+      "^\\s*is\\s*there\\s*message\\s*$",
+      "^\\s*there\\s*are\\s*messages\\s*$",
+      "^\\s*could\\s*read\\s*message\\s*$",
+      "^\\s*listen\\s*message\\s*$",
+      "^\\s*read\\s*message\\s*$"
+    ],
     "rmesnard:reply": [
       "^\\s*connection\\s*$",
       "^\\s*connect\\s*$",
@@ -50,6 +58,7 @@
   "slot_names_to_entities": {
     "rmesnard:asktowait": {},
     "rmesnard:getmessage": {},
+    "rmesnard:readmessage": {},
     "rmesnard:reply": {},
     "rmesnard:sayno": {},
     "rmesnard:sayyes": {},

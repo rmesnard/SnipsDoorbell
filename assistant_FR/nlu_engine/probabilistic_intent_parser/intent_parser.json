@@ -136,20 +136,24 @@
       "slot_filler_name": "slot_filler_1"
     },
     {
-      "intent": "rmesnard:reply",
+      "intent": "rmesnard:readmessage",
       "slot_filler_name": "slot_filler_2"
     },
     {
-      "intent": "rmesnard:sayno",
+      "intent": "rmesnard:reply",
       "slot_filler_name": "slot_filler_3"
     },
     {
-      "intent": "rmesnard:sayyes",
+      "intent": "rmesnard:sayno",
       "slot_filler_name": "slot_filler_4"
     },
     {
-      "intent": "rmesnard:servicename",
+      "intent": "rmesnard:sayyes",
       "slot_filler_name": "slot_filler_5"
+    },
+    {
+      "intent": "rmesnard:servicename",
+      "slot_filler_name": "slot_filler_6"
     }
   ]
 }

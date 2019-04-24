@@ -32,6 +32,21 @@
       "^\\s*je\\s*vais\\s*laisser\\s*message\\s*$",
       "^\\s*laisser\\s*message\\s*$"
     ],
+    "rmesnard:readmessage": [
+      "^\\s*ecoute\\s*messagerie\\s*$",
+      "^\\s*\u00e9couter\\s*messagerie\\s*$",
+      "^\\s*\u00e9couter\\s*message\\s*$",
+      "^\\s*lit\\s*messages\\s*$",
+      "^\\s*est\\s*que\\s*ai\\s*messages\\s*$",
+      "^\\s*ai\\s*messages\\s*$",
+      "^\\s*combien\\s*message\\s*t\\s*il\\s*$",
+      "^\\s*quelqu\\s*laiss\u00e9\\s*messages\\s*$",
+      "^\\s*combien\\s*message\\s*il\\s*t\\s*il\\s*$",
+      "^\\s*combien\\s*messages\\s*$",
+      "^\\s*combien\\s*message\\s*il\\s*$",
+      "^\\s*t\\s*il\\s*messages\\s*$",
+      "^\\s*lire\\s*messages\\s*$"
+    ],
     "rmesnard:reply": [
       "^\\s*r\u00e9ponse\\s*$",
       "^\\s*r\u00e9pond\\s*$",
@@ -63,6 +78,7 @@
   "slot_names_to_entities": {
     "rmesnard:asktowait": {},
     "rmesnard:getmessage": {},
+    "rmesnard:readmessage": {},
     "rmesnard:reply": {},
     "rmesnard:sayno": {},
     "rmesnard:sayyes": {},
