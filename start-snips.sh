@@ -109,9 +109,12 @@ if [ $ENABLE_INTERCOM == yes ]; then
 	cd /usr/share/snips/skills
 	nohup python3 -u listener.py 2> /var/log/listerner.log &
 	snips_listener_pid=$!
-	nohup python3 -u doorbell.py 2> /var/log/doorbell.log &
-	snips_doorbell_pid=$!	
 fi
+
+#start doorbel skill
+cd /usr/share/snips/skills
+nohup python3 -u doorbell.py 2> /var/log/doorbell.log &
+snips_doorbell_pid=$!
 
 echo "running ok"
 
