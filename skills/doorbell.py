@@ -4,7 +4,7 @@
 import paho.mqtt.client as mqtt
 import json
 import struct
-from threading import Timer
+from threading import Timer 
 from snipsTools import *
 import RPi.GPIO as GPIO
 import sys
@@ -31,6 +31,7 @@ TIMER_ASKHOME = int(config_doorbell.get('timer_ask_home'))
 
 MQTT_PRESENCE = str(config_doorbell.get('mqtt_topic_presence')).replace('"', '')
 MQTT_PRESENCE_PAYLOAD = str(config_doorbell.get('mqtt_payload_presence')).replace('"', '')
+MQTT_MESSAGE = str(config_doorbell.get('mqtt_topic_message')).replace('"', '')
 
 SAY_WLC_PRESENT = str(config_doorbell.get('say_welcome_present')).replace('"', '')
 SAY_WLC_NOTPRESENT = str(config_doorbell.get('say_welcome_nopresent')).replace('"', '')
@@ -38,6 +39,12 @@ SAY_GOODB = str(config_doorbell.get('say_goobye')).replace('"', '')
 SAY_START_MSG = str(config_doorbell.get('say_start_message')).replace('"', '')
 SAY_NOREPLY = str(config_doorbell.get('say_no_reply')).replace('"', '')
 SAY_INCOMMING = str(config_doorbell.get('say_incomming')).replace('"', '')
+SAY_THANKS = str(config_doorbell.get('say_thanks')).replace('"', '')
+
+SAY_NO_MESSAGE = str(config_doorbell.get('say_no_message')).replace('"', '')
+SAY_XXX_MESSAGE = str(config_doorbell.get('say_xxx_messages')).replace('"', '')
+SAY_MESSAGE_XXX = str(config_doorbell.get('say_message_xxx')).replace('"', '')
+
 
 button_status = False
 previous_status = False
@@ -46,19 +53,31 @@ retry_call = 0
 # Default presence  True  
 presence = True
 runphase = 0
+session_id_doorbell = ''
+session_id_home = ''
+
+nb_recorded_message = 0
 
 def on_connect(client, userdata, flags, rc):
     print('Connected to MQTT system')
     mqtt.subscribe('snips/doorbell/' + SITE_ID )
     mqtt.subscribe('hermes/intent/#')
     mqtt.subscribe('hermes/dialogueManager/#')
+    mqtt.subscribe('hermes/tts/sayFinished')
+    if MQTT_MESSAGE != "":
+        mqtt.subscribe(MQTT_MESSAGE)
     if MQTT_PRESENCE != "":
         mqtt.subscribe(MQTT_PRESENCE)
 
 def on_message(client, userdata, msg):
     global presence
     global runphase
+    global session_id_doorbell
+    global session_id_home
+    global nb_recorded_message
+
     #print('msg.topic ' + msg.topic)
+    #print('msg.payload ' + str(msg.payload))
     if msg.topic == 'snips/doorbell/' + SITE_ID:
         doorbell_command(msg)
     if msg.topic == MQTT_PRESENCE:
@@ -66,26 +85,69 @@ def on_message(client, userdata, msg):
             presence = True
         else:
             presence = False
+    if msg.topic == MQTT_MESSAGE:
+        print('messages count')
+        nb_recorded_message = int(msg.payload)
+
+    if msg.topic == 'hermes/intent/rmesnard:readmessage':
+        if runphase==0:
+            doorbell_readmessages(msg)
+
     if msg.topic == 'hermes/intent/rmesnard:getmessage':
+        if runphase==0:
+            doorbell_readmessages(msg)        
         if runphase==4:
             doorbell_recordmessage(msg)
+        if runphase==1:
+            runphase=4
+            mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "customData" : "ASK_MESSAGE" , "init" : { "type" : "action" ,"text":"'+  SAY_NOREPLY +'" , "intentFilter" : [ "rmesnard:getmessage" , "rmesnard:sayyes" , "rmesnard:sayno" ] } }')
+            print("ask for message")
+
     if msg.topic == 'hermes/intent/rmesnard:sayyes':
         if runphase==4:
             doorbell_recordmessage(msg)
+
     if msg.topic == 'hermes/intent/rmesnard:sayno':
         if runphase==4:
             print("sayno")
             doorbell_seeyou(msg,True)
+
+    if msg.topic == 'hermes/intent/rmesnard:reply':
+        if runphase==1:
+            print("reply")
+            doorbell_connectaudio(msg)
+
+    if msg.topic == 'hermes/intent/rmesnard:endconnection':
+        if runphase==2:
+            print("disconnect")
+            doorbell_seeyou(msg,False)
+
     if msg.topic == 'hermes/dialogueManager/sessionEnded':
         m_decode=str(msg.payload.decode("utf-8","ignore"))
         m_in=json.loads(m_decode) 
-        sessionId = m_in["sessionId"]
         siteId = m_in["siteId"]
         customData = m_in["customData"]
         if runphase==1 and customData == 'RINGING' and siteId == MQTT_SNIPSHOME :
             ring_retry()
         if runphase==4 and customData == 'ASK_MESSAGE' and siteId == SITE_ID :
             doorbell_seeyou(msg,False)
+    if msg.topic == 'hermes/dialogueManager/sessionStarted':
+        m_decode=str(msg.payload.decode("utf-8","ignore"))
+        m_in=json.loads(m_decode) 
+        sessionId = m_in["sessionId"]
+        siteId = m_in["siteId"]
+        if siteId == SITE_ID :
+            session_id_doorbell = sessionId
+        if siteId == MQTT_SNIPSHOME :
+            session_id_home = sessionId
+    if msg.topic == 'hermes/tts/sayFinished':
+        m_decode=str(msg.payload.decode("utf-8","ignore"))
+        m_in=json.loads(m_decode) 
+        sessionId = m_in["sessionId"]
+        if runphase==1 and sessionId==session_id_doorbell:
+            doorbell_startrecordmessage()
+            doorbell_openaudioIN()
+
 
 def on_timer():
     global retry_call
@@ -93,11 +155,25 @@ def on_timer():
     print('time out')
     if runphase == 1 :
         print('no answser at home')
-        #mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "init" : { "type" : "action" ,"text":"'+  SAY_WLC_NOTPRESENT +'" , "intentFilter" : [ "rmesnard:getmessage" , "rmesnard:sayyes" , "rmesnard:sayno" ] } }')
         runphase = 4
         retry_call = 0
         mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'", "customData" : "ASK_MESSAGE" , "init" : { "type" : "action" ,"text":"'+  SAY_NOREPLY +'" , "intentFilter" : [ "rmesnard:getmessage" , "rmesnard:sayyes" , "rmesnard:sayno" ] } }')        
+    if runphase == 5 :
+        doorbell_endrecord()
 
+
+def doorbell_endrecord():
+    global runphase
+    print("end record")
+    runphase=0
+    mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "init" : { "type" : "notification" ,"text":"'+  SAY_THANKS +'"} }')
+    doorbell_stoprecordmessage()
+    doorbell_closeaudioIN()
+
+def doorbell_connectaudio(msg):
+    global runphase
+    runphase=2
+    doorbell_openaudioOUT()
 
 def doorbell_seeyou(msg,sessionexist):
     global runphase
@@ -113,8 +189,7 @@ def doorbell_seeyou(msg,sessionexist):
         mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "init" : { "type" : "notification" ,"text":"'+  SAY_GOODB +'"} }')
     doorbell_stoprecordmessage()
     doorbell_closeaudioIN()
-
-
+    doorbell_closeaudioOUT()
 
 def doorbell_command(msg):
     m_decode=str(msg.payload.decode("utf-8","ignore"))
@@ -130,46 +205,60 @@ def doorbell_command(msg):
 def doorbell_recordmessage(msg):
     global runphase
     global sessionId
+    global nb_recorded_message
+
     print("record")
-    runphase=3
+    runphase=5
     m_decode=str(msg.payload.decode("utf-8","ignore"))
     m_in=json.loads(m_decode) #decode json data
     sessionId = m_in["sessionId"]
-    mqtt.publish('hermes/dialogueManager/endSession','{"sessionId":"'+ sessionId +'" , "text":"'+  SAY_START_MSG +'" }')  
+    mqtt.publish('hermes/dialogueManager/endSession','{"sessionId":"'+ sessionId +'" , "text":"'+  SAY_START_MSG +'" }') 
+    if MQTT_MESSAGE != "":
+        nb_recorded_message+=1 
+        mqtt.publish(MQTT_MESSAGE,nb_recorded_message,0,True)  
+    tmr = Timer(TIMER_RECORD, on_timer)
+    tmr.start()
 
 def doorbell_startrecordmessage():
     print ("start recording on " + MQTT_SNIPSHOME )
-    #mqtt.publish('snips/audioClient/' + MQTT_SNIPSHOME,'{ "channel":"'+ SITE_ID +'" , "command" : "startrecord" }')
+    mqtt.publish('snips/audioClient/' + MQTT_SNIPSHOME,'{ "channel":"'+ SITE_ID +'" , "command" : "startrecord" }')
 
 def doorbell_openaudioIN():
     print ("audio IN - On : " + MQTT_SNIPSHOME)
     mqtt.publish('snips/audioClient/' + MQTT_SNIPSHOME,'{ "channel":"'+ SITE_ID +'" , "command" : "startplay" }')
     
+def doorbell_openaudioOUT():
+    print ("audio OUT - On : " + MQTT_SNIPSHOME)
+    mqtt.publish('snips/audioClient/' + SITE_ID,'{ "channel":"'+ MQTT_SNIPSHOME +'" , "command" : "startplay" }')
+
 def doorbell_stoprecordmessage():
     print ("stop recording on " + MQTT_SNIPSHOME )
-    #mqtt.publish('snips/audioClient/' + MQTT_SNIPSHOME,'{ "channel":"'+ SITE_ID +'" , "command" : "stoprecord" }')
+    mqtt.publish('snips/audioClient/' + MQTT_SNIPSHOME,'{ "channel":"'+ SITE_ID +'" , "command" : "stoprecord" }')
 
 def doorbell_closeaudioIN():
     print ("audio IN - Off : " + MQTT_SNIPSHOME)
     mqtt.publish('snips/audioClient/' + MQTT_SNIPSHOME,'{ "channel":"'+ SITE_ID +'" , "command" : "stopplay" }')
 
+def doorbell_closeaudioOUT():
+    print ("audio OUT - Off : " + MQTT_SNIPSHOME)
+    mqtt.publish('snips/audioClient/' + SITE_ID,'{ "channel":"'+ MQTT_SNIPSHOME +'" , "command" : "stopplay" }')
+
 def ringing():
     global runphase
     global presence
     global retry_call
+
     print('ringing')
     retry_call = 0
     if (presence):
         runphase=1
         mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "init" : { "type" : "notification" ,"text":"'+  SAY_WLC_PRESENT +'"} }')
-        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ MQTT_SNIPSHOME +'" , "init" : { "type" : "action" ,"text":"'+  SAY_INCOMMING +'" , "customData" : "SAY_INCOMMING" } }')
-        doorbell_startrecordmessage()
-        doorbell_openaudioIN()
+        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ MQTT_SNIPSHOME +'" , "customData" : "RINGING"  , "init" : { "type" : "action" ,"text":"'+  SAY_INCOMMING +'" , "intentFilter" : [ "rmesnard:reply" , "rmesnard:getmessage" , "rmesnard:asktowait"  ] } }')
         tmr = Timer(TIMER_ASKHOME, on_timer)
         tmr.start()
     else:
         runphase=4
-        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "customData" : "ASK_MESSAGE" , "init" : { "type" : "action" ,"text":"'+  SAY_WLC_NOTPRESENT +'" , "customData" : "ASK_MESSAGE" , "intentFilter" : [ "rmesnard:getmessage" , "rmesnard:sayyes" , "rmesnard:sayno" ] } }')
+        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "customData" : "ASK_MESSAGE" , "init" : { "type" : "action" ,"text":"'+  SAY_WLC_NOTPRESENT +'" , "intentFilter" : [ "rmesnard:getmessage" , "rmesnard:sayyes" , "rmesnard:sayno" ] } }')
 
 def ring_retry():
     global runphase
@@ -179,12 +268,21 @@ def ring_retry():
         print('time out')
         runphase = 4
         retry_call = 0
-        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "init" : { "type" : "action" ,"text":"'+  SAY_NOREPLY +'"  , "customData" : "ASK_MESSAGE" , "intentFilter" : [ "rmesnard:getmessage" , "rmesnard:sayyes" , "rmesnard:sayno" ] } }')        
+        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "customData" : "ASK_MESSAGE" , "init" : { "type" : "action" ,"text":"'+  SAY_NOREPLY +'"   , "intentFilter" : [ "rmesnard:getmessage" , "rmesnard:sayyes" , "rmesnard:sayno" ] } }')        
     else:
         print('ringing retry')
         retry_call+=1
-        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ MQTT_SNIPSHOME +'" , "init" : { "type" : "notification" ,"text":"'+  SAY_INCOMMING +'" , "customData" : "RINGING" } }')
+        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ MQTT_SNIPSHOME +'" , "customData" : "RINGING" , "init" : { "type" : "action" ,"text":"'+  SAY_INCOMMING +'"  , "intentFilter" : [ "rmesnard:reply" , "rmesnard:getmessage" , "rmesnard:asktowait" ] } }')
 
+def doorbell_readmessages(msg):
+    global nb_recorded_message
+
+    if nb_recorded_message > 0:
+        nmessg = SAY_XXX_MESSAGE.replace('XXX', str(nb_recorded_message))
+        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "init" : { "type" : "notification" ,"text":"'+  nmessg +'"} }')
+        # TODO READ the messages
+    else:
+        mqtt.publish('hermes/dialogueManager/startSession','{"siteId":"'+ SITE_ID +'" , "init" : { "type" : "notification" ,"text":"'+  SAY_NO_MESSAGE +'"} }')
 
 def main():
     global previous_status
@@ -218,10 +316,12 @@ def main():
 
     except KeyboardInterrupt: 
         print("End.")
+        doorbell_seeyou('',False)
     except:
         print("Unexpected error:", sys.exc_info()[0])
     finally:
         GPIO.cleanup()
+
 
 if __name__ == "__main__":
     mqtt = mqtt.Client(SITE_ID)
