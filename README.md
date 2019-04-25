@@ -1,5 +1,9 @@
 # SnipsDoorbell Docker Image
 
+
+A Docker Image for a Doorbell with voice interaction using SNIPS	(DOORBELL STATION)
+
+
 Project Here  :
 
 https://www.hackster.io/remy-mesnard/doorbell-intercom-with-snips-voice-assistant-68e77a
@@ -13,7 +17,7 @@ sudo apt-get install git
 
 Build with docker :
 
-sudo docker build -t rmesnard/snipsdoorbell github.com/rmesnard/SnipsDoorbell
+sudo docker build -t lijah/snips-doorbell github.com/rmesnard/SnipsDoorbell
 
 
 #install
