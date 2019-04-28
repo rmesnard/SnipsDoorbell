@@ -61,9 +61,8 @@ audio = ["snipshome@mqtt"]
 # provider = "picotts"
 # provider = "makerstts"
 provider = "customtts"
-## customtts specific configuration (here configured to use picotts using the en-US language)
+## customtts specific configuration
 ## available placeholder variables : %%OUTPUT_FILE%%, %%LANG%%, %%TEXT%%
-## { command = ["/home/pi/ProjectAlice/shell/snipsSuperTTS.sh", "%%OUTPUT_FILE%%", "amazon", "%%LANG%%", "US", "Joanna", "FEMALE", "%%TEXT%%", "22050"] }
 ##  espeak -vmb-fr1 -p30 -s 130 "ceci est un test de prononciation fransaise"
 customtts = { command = ["espeak", "-vmb-fr1", "-p30", "-s130", "-w%%OUTPUT_FILE%%", "%%TEXT%%"] }
 
